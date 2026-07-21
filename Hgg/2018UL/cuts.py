@@ -5,8 +5,9 @@ cuts = {}
 preselections = 'mll>12  \
               && Lepton_pt[0]>25 \
               && Lepton_pt[1]>10 \
-              && Alt(Lepton_pt,2,0)<15 \
+              && Alt(Lepton_pt,2,0) < 15 \
               && (abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13) \
+              && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
               && (abs(Lepton_pdgId[0])==abs(Lepton_pdgId[1])) \
               && bVeto \
               '
@@ -25,7 +26,7 @@ preselections = 'mll>12  \
 #}
 
 
-
+'''
 cuts['DY'] = {
     'expr' : 'Alt(Lepton_pt,2,0) < 15 && (abs(Lepton_pdgId[0])==abs(Lepton_pdgId[1]))',
     'categories' : {
@@ -35,6 +36,7 @@ cuts['DY'] = {
     }
 }
     
+
 
 cuts['Sig'] = {
     'expr' : 'Alt(Lepton_pt,2,0) < 15 && (abs(Lepton_pdgId[0])==abs(Lepton_pdgId[1])) && Alt(CleanJet_pt,2,0) < 30 && Alt(CleanJet_pt,1,0) > 30',
