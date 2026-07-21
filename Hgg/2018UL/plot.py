@@ -345,7 +345,7 @@ plot['Fake_mm']  = {
 ########
 # Data #
 ########
-
+'''
 plot['DATA']  = { 
     'nameHR'   : 'Data',
     'color'    : 1 ,  
@@ -354,7 +354,7 @@ plot['DATA']  = {
     'isBlind'  : 0
 }
 
-
+'''
 # Define legend
 
 legend = {}

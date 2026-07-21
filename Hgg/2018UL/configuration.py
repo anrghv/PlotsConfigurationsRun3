@@ -8,7 +8,7 @@ if any(machine in os.uname()[1] for machine in ['portal','bms']):
     site = 'kit'
 
 # Tag used to identify the configuration folder version
-tag = 'WHSS_OSCR_2018_v9_chargeAsymmetry_Mu82_EleUL90'
+tag = 'Hgg_2018UL'
 
 # File to use as runner script, default uses mkShapesRDF.shapeAnalysis.runner, otherwise specify path to script
 runnerFile = "default"

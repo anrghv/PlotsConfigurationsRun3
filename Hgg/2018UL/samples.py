@@ -10,7 +10,7 @@ import os,glob
 
 mcProduction = 'Summer20UL18_106x_nAODv9_Full2018v9'
 dataReco     = 'Run2018_UL2018_nAODv9_Full2018v9'
-mcSteps      = 'MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9{var}'
+mcSteps      = 'MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9'
 fakeSteps    = 'DATAl1loose2018v9__l2loose__fakeW'
 dataSteps    = 'DATAl1loose2018v9__l2loose__l2tightOR2018v9'
 
@@ -429,7 +429,7 @@ signals.append('WH_htt_minus')
 ###########################################
 ################## DATA ###################
 ###########################################
-
+'''
 samples['DATA'] = {
   'name': [],
   'weight': 'LepWPCut*METFilter_DATA*1',
@@ -457,3 +457,4 @@ for _, sd in DataRun:
 
     samples['DATA']['name'].extend(files)
     addSampleWeight(samples, 'DATA', tag_data, DataTrig[pd])
+    '''

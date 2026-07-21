@@ -8,20 +8,35 @@ variables = {}
 #         'tree': {'LeptonPt1': 'Lepton_pt[0]'},
 #         'cuts': ['sr']
 #         }
-
+'''
 variables['ptj1'] = {
         'name': 'Alt(CleanJet_pt,0,0)',
-        'range': (100, 30, 500),
+        'range': (100, 10, 100),
         'xaxis': 'p_{T} 1st jet',
         'fold' :3
 }
 
 variables['ptj2'] = {
         'name': 'Alt(CleanJet_pt,1,0)',
-        'range': (100, 30, 500),
+        'range': (100, 10, 100),
         'xaxis': 'p_{T} 2nd jet',
         'fold' :3
 }
+
+variables['lowestqgl_ptj1'] = {
+        'name': 'LowestQGLJet_pt1',
+        'range': (100,10,100),
+        'xaxis': 'p_{T} 1st jet(lowestQGL)',
+        'fold': 3
+}
+
+variables['lowestqgl_ptj2'] = {
+        'name': 'LowestQGLJet_pt2',
+        'range': (100,10,100),
+        'xaxis': 'p_{T} 2nd jet(lowestQGL)',
+        'fold': 3
+}
+
 
 variables['qglj1'] = {
         'name': 'Alt(Jet_qgl,CleanJet_jetIdx[0],2)',
@@ -102,10 +117,18 @@ variables['btagCSVV2j2'] = {
 #
 
 variables['mjj']      = {   'name': 'mjj',            #   variable name    
-                            'range' : (20, 0, 200),    #   variable range
+                            'range' : (100, 0, 200),    #   variable range
                             'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                             'fold' :3
                         }
+
+variables['nValidQGL'] = {
+    'name': 'CleanJet_qgl_valid.size()',
+    'range': (10,0,10),
+    'xaxis': 'N valid QGL jets',
+    'fold': 3
+}
+
 
 variables['mjjbins']      = {   'name': 'mjj',            #   variable name    
                             'range' : (100, 0, 200),    #   variable range
@@ -187,9 +210,36 @@ variables['dphilljetjet']  = {  'name': 'dphilljetjet',
                         'xaxis' : '#Delta#phi_{ll,jj}',
                         'fold'  : 3
                         }
+'''
 
+variables['mjj_qgl']      = {   'name': 'mjj_qgl',            #   variable name    
+                            'range' : (100, 0, 200),    #   variable range
+                            'xaxis' : 'm_{jj} [GeV]',  #   x axis name
+                            'fold' :2
+                        }
+'''
 
+variables['mjj_qgl_cc']      = {   'name': 'mjj_qgl_cc',            #   variable name    
+                            'range' : (100, 0, 200),    #   variable range
+                            'xaxis' : 'm_{jj} cc [GeV]',  #   x axis name
+                            'fold' :3
+                        }
 
+variables['detajj_qgl']      = {   'name': 'detajj_qgl',            #   variable name    
+                            'range' : (100, 0.0, 9.0),    #   variable range
+                            'xaxis' : '#Delta#eta_{jj}',  #   x axis name
+                            'fold' :2
+                        }
 
+variables['drjj_qgl']      = {   'name': 'drjj_qgl',            #   variable name    
+                            'range' : (100, 0.0, 9.0),    #   variable range
+                            'xaxis' : '#DeltaR_{jj}',  #   x axis name
+                            'fold' :2
+                        }
 
-
+variables['ptjj_qgl']      = {   'name': 'ptjj_qgl',            #   variable name    
+                            'range' : (100, 0, 200),    #   variable range
+                            'xaxis' : 'pt_{jj} [GeV]',  #   x axis name
+                            'fold' :2
+                        }
+'''

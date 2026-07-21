@@ -167,9 +167,10 @@ structure['Fake_em']  = {
     'isData'   : 0,
 }
 
-
+'''
 # Data
 structure['DATA']  = { 
     'isSignal' : 0,
     'isData'   : 1 
 }
+'''

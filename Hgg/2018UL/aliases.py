@@ -7,7 +7,7 @@ import inspect
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # 2018UL
 configurations = os.path.dirname(configurations) # Hgg
-#configurations = os.path.dirname(configurations) # PlotsConfigurationsRun3
+configurations = os.path.dirname(configurations) # PlotsConfigurationsRun3
 
 aliases = {}
 aliases = OrderedDict()
@@ -23,6 +23,86 @@ mc_special = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Hgluglu'
 # LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW
 eleWP = 'mvaFall17V2Iso_WP90'
 muWP  = 'cut_Tight_HWWW'
+
+aliases['CleanJet_qgl'] = {
+    'expr': 'Take(Jet_qgl, CleanJet_jetIdx)'
+}
+
+aliases['CleanJet_qgl_valid'] = {
+    'expr': 'CleanJet_qgl[CleanJet_qgl >= 0]'
+}
+
+aliases['LowestQGLIdx'] = {
+    'expr': 'Take(Nonzero(CleanJet_qgl >= 0), Argsort(CleanJet_qgl[CleanJet_qgl >= 0]))'
+}
+
+aliases['LowestQGLJet_pt1'] = {
+    'expr': 'Alt(CleanJet_pt, LowestQGLIdx[0], 0)'
+}
+
+aliases['LowestQGLJet_pt2'] = {
+    'expr': 'Alt(CleanJet_pt, LowestQGLIdx[1], 0)'
+}
+
+aliases['LowestQGLJet_pt3'] = {
+    'expr': 'Alt(CleanJet_pt, LowestQGLIdx[2], 0)'
+}
+
+aliases['LowestQGLJet_eta1'] = {
+    'expr': 'Alt(CleanJet_eta, LowestQGLIdx[0], 99)'
+}
+
+aliases['LowestQGLJet_eta2'] = {
+    'expr': 'Alt(CleanJet_eta, LowestQGLIdx[1], 99)'
+}
+
+aliases['LowestQGLJet_phi1'] = {
+    'expr': 'Alt(CleanJet_phi, LowestQGLIdx[0], 99)'
+}
+
+aliases['LowestQGLJet_phi2'] = {
+    'expr': 'Alt(CleanJet_phi, LowestQGLIdx[1], 99)'
+}
+
+aliases['LowestQGLJet_mass1'] = {
+    'expr': 'Alt(CleanJet_mass, LowestQGLIdx[0], 0)'
+}
+
+aliases['LowestQGLJet_mass2'] = {
+    'expr': 'Alt(CleanJet_mass, LowestQGLIdx[1], 0)'
+}
+
+
+'''
+aliases['mjj_qgl_cc'] = {
+    'linesToAdd': [
+        f'#include "{configurations}/Hgg/2018UL/files/mjj_qgl.cc"'
+    ],
+    'expr': 'mjj_qgl(CleanJet_pt, CleanJet_eta, CleanJet_phi, CleanJet_mass, LowestQGLIdx)'
+}
+'''
+'''
+aliases['mjj_qgl'] = {
+    'expr': '(CleanJet_4DV[idx1] + CleanJet_4DV[idx2]).M()'
+}
+'''
+
+aliases['mjj_qgl'] = {
+    'expr': 'LowestQGLIdx.size() >= 2 ? (ROOT::Math::PtEtaPhiMVector(CleanJet_pt[LowestQGLIdx[0]],CleanJet_eta[LowestQGLIdx[0]],CleanJet_phi[LowestQGLIdx[0]],CleanJet_mass[LowestQGLIdx[0]])+ROOT::Math::PtEtaPhiMVector(CleanJet_pt[LowestQGLIdx[1]],CleanJet_eta[LowestQGLIdx[1]],CleanJet_phi[LowestQGLIdx[1]],CleanJet_mass[LowestQGLIdx[1]])).M() : -9999.0'
+}
+
+aliases['detajj_qgl'] = {
+    'expr': 'LowestQGLIdx.size() >= 2 ? abs(LowestQGLJet_eta1 - LowestQGLJet_eta2) : -9999.0'
+}
+
+aliases['ptjj_qgl'] = {
+    'expr': 'LowestQGLIdx.size() >= 2 ? (ROOT::Math::PtEtaPhiMVector(CleanJet_pt[LowestQGLIdx[0]], CleanJet_eta[LowestQGLIdx[0]], CleanJet_phi[LowestQGLIdx[0]], CleanJet_mass[LowestQGLIdx[0]]) + ROOT::Math::PtEtaPhiMVector(CleanJet_pt[LowestQGLIdx[1]], CleanJet_eta[LowestQGLIdx[1]], CleanJet_phi[LowestQGLIdx[1]], CleanJet_mass[LowestQGLIdx[1]])).Pt() : -9999.0'
+}
+
+aliases['drjj_qgl'] = {
+    'expr': 'LowestQGLIdx.size() >= 2 ? DeltaR(LowestQGLJet_eta1, LowestQGLJet_eta2, LowestQGLJet_phi1, LowestQGLJet_phi2) : -9999.0'
+}
+
 
 aliases['LepWPCut'] = {
     'expr' : 'LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW*\

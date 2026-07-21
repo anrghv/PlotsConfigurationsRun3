@@ -193,101 +193,101 @@ nuisances['lumi_Correlated_2017_2018'] = {
 
 ###### Trigger Scale Factors
 
-#trig_syst = ['TriggerSFWeight_2l_u/TriggerSFWeight_2l', 'TriggerSFWeight_2l_d/TriggerSFWeight_2l']
+trig_syst = ['TriggerSFWeight_2l_u/TriggerSFWeight_2l', 'TriggerSFWeight_2l_d/TriggerSFWeight_2l']
 
-#nuisances['trigg'] = {
-    #'name'    : 'CMS_eff_hwwtrigger_2018',
-    #'kind'    : 'weight',
-    #'type'    : 'shape',
-    #'samples' : dict((skey, trig_syst) for skey in mc)
-#}
+nuisances['trigg'] = {
+    'name'    : 'CMS_eff_hwwtrigger_2018',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : dict((skey, trig_syst) for skey in mc)
+}
 
 ###### Electron Efficiency and energy scale
 
-#nuisances['eff_e'] = {
-    #'name'    : 'CMS_eff_e_2018',
+nuisances['eff_e'] = {
+    'name'    : 'CMS_eff_e_2018',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+}
+
+#nuisances['eff_ttHMVA_e'] = {
+    #'name'    : 'CMS_eff_ttHMVA_e_2018',
     #'kind'    : 'weight',
     #'type'    : 'shape',
-    #'samples' : dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+    #'samples' : dict((skey, ['LepWPttHMVASFEleUp', 'LepWPttHMVASFEleDown']) for skey in mc)
 #}
 
-##nuisances['eff_ttHMVA_e'] = {
-    ##'name'    : 'CMS_eff_ttHMVA_e_2018',
-    ##'kind'    : 'weight',
-    ##'type'    : 'shape',
-    ##'samples' : dict((skey, ['LepWPttHMVASFEleUp', 'LepWPttHMVASFEleDown']) for skey in mc)
-##}
-
-#nuisances['electronpt'] = {
-    #'name'       : 'CMS_scale_e_2018',
-    #'kind'       : 'suffix',
-    #'type'       : 'shape',
-    #'mapUp'      : 'ElepTup',
-    #'mapDown'    : 'ElepTdo',
-    #'samples'    : dict((skey, ['1', '1']) for skey in mc),
-    #'folderUp'   : makeMCDirectory('ElepTup_suffix'),
-    #'folderDown' : makeMCDirectory('ElepTdo_suffix'),
-    #'AsLnN'      : '0'
-#}
+nuisances['electronpt'] = {
+    'name'       : 'CMS_scale_e_2018',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'ElepTup',
+    'mapDown'    : 'ElepTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'   : makeMCDirectory('ElepTup_suffix'),
+    'folderDown' : makeMCDirectory('ElepTdo_suffix'),
+    'AsLnN'      : '0'
+}
 
 ###### Muon Efficiency and energy scale
 
-#nuisances['eff_m'] = {
-    #'name'    : 'CMS_eff_m_2018',
+nuisances['eff_m'] = {
+    'name'    : 'CMS_eff_m_2018',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+}
+
+#nuisances['eff_ttHMVA_m'] = {
+    #'name'    : 'CMS_eff_ttHMVA_m_2018',
     #'kind'    : 'weight',
     #'type'    : 'shape',
-    #'samples' : dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    #'samples' : dict((skey, ['LepWPttHMVASFMuUp', 'LepWPttHMVASFMuDown']) for skey in mc)
 #}
 
-##nuisances['eff_ttHMVA_m'] = {
-    ##'name'    : 'CMS_eff_ttHMVA_m_2018',
-    ##'kind'    : 'weight',
-    ##'type'    : 'shape',
-    ##'samples' : dict((skey, ['LepWPttHMVASFMuUp', 'LepWPttHMVASFMuDown']) for skey in mc)
-##}
-
-#nuisances['muonpt'] = {
-    #'name'       : 'CMS_scale_m_2018',
-    #'kind'       : 'suffix',
-    #'type'       : 'shape',
-    #'mapUp'      : 'MupTup',
-    #'mapDown'    : 'MupTdo',
-    #'samples'    : dict((skey, ['1', '1']) for skey in mc),
-    #'folderUp'   : makeMCDirectory('MupTup_suffix'),
-    #'folderDown' : makeMCDirectory('MupTdo_suffix'),
-    #'AsLnN'      : '0'
-#}
+nuisances['muonpt'] = {
+    'name'       : 'CMS_scale_m_2018',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'MupTup',
+    'mapDown'    : 'MupTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'   : makeMCDirectory('MupTup_suffix'),
+    'folderDown' : makeMCDirectory('MupTdo_suffix'),
+    'AsLnN'      : '0'
+}
 
 ###### Jet energy scale
-#jes_systs    = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
+jes_systs    = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
-#for js in jes_systs:
+for js in jes_systs:
 
-  #nuisances[js] = {
-      #'name'      : 'CMS_scale_' + js.replace("JES","j_"),
-      #'kind'      : 'suffix',
-      #'type'      : 'shape',
-      #'mapUp'     : js + 'up',
-      #'mapDown'   : js + 'do',
-      #'samples'   : dict((skey, ['1', '1']) for skey in mc),
-      #'folderUp'  : makeMCDirectory('RDF__JESup_suffix'),
-      #'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
-      #'reweight'  : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
-      #'AsLnN'     : '0'
-  #}
+  nuisances[js] = {
+      'name'      : 'CMS_scale_' + js.replace("JES","j_"),
+      'kind'      : 'suffix',
+      'type'      : 'shape',
+      'mapUp'     : js + 'up',
+      'mapDown'   : js + 'do',
+      'samples'   : dict((skey, ['1', '1']) for skey in mc),
+      'folderUp'  : makeMCDirectory('RDF__JESup_suffix'),
+      'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
+      'reweight'  : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
+      'AsLnN'     : '0'
+  }
 
 ###### Jet energy resolution
-#nuisances['JER'] = {
-    #'name'      : 'CMS_res_j_2018',
-    #'kind'      : 'suffix',
-    #'type'      : 'shape',
-    #'mapUp'     : 'JERup',
-    #'mapDown'   : 'JERdo',
-    #'samples'   : dict((skey, ['1', '1']) for skey in mc),
-    #'folderUp'  : makeMCDirectory('JERup_suffix'),
-    #'folderDown': makeMCDirectory('JERdo_suffix'),
-    #'AsLnN'     : '0'
-#}
+nuisances['JER'] = {
+    'name'      : 'CMS_res_j_2018',
+    'kind'      : 'suffix',
+    'type'      : 'shape',
+    'mapUp'     : 'JERup',
+    'mapDown'   : 'JERdo',
+    'samples'   : dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'  : makeMCDirectory('JERup_suffix'),
+    'folderDown': makeMCDirectory('JERdo_suffix'),
+    'AsLnN'     : '0'
+}
 
 ###### MET unclustered energy
 
