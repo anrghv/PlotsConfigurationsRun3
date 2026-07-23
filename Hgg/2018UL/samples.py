@@ -174,7 +174,7 @@ files = nanoGetLocalSampleFiles("/eos/user/a/amassiro/HIG/ZHggPostProc/Summer20U
 
 samples["ggZHgluglu"] = {
     "name": files,
-    #"weight": mcCommonWeight,  --> missing post processing
+    #"weight": mcCommonWeight,  --> missing post processingss
     #"weight": 1,
     "weight": "baseW*genWeight*0.1227*0.08187*0.033658*3",
     "FilesPerJob": 200,
