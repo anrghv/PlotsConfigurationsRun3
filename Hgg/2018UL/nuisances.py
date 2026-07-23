@@ -15,12 +15,13 @@ fakeSteps    = 'DATAl1loose2018v9__l2loose__fakeW'
 dataSteps    = 'DATAl1loose2018v9__l2loose__l2tightOR2018v9'
 
 treeBaseDir  = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+# treeBaseDirZH = '/eos/user/a/amassiro/HIG/ZHggPostProc/Summer20UL18_106x_nAODv9_Full2018v9/MCFull2018v9/'
 limitFiles   = -1
 
 #
 # AM: for the time being exclude the signal from the list of nuisances ... missing adequate post-processing
 #
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Hgluglu')]
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Hgluglu', 'qqZHgluglu', 'ggZHgluglu')]
 mcln = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 redirector = ""
