@@ -1,0 +1,16 @@
+# Generated output
+rootFiles/
+plots_Hgg_2018UL/
+condor/
+configs/
+
+# Python
+__pycache__/
+*.pyc
+
+# ROOT files
+*.root
+
+# Plots
+*.png
+*.pdf
