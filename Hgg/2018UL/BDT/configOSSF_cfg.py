@@ -10,6 +10,7 @@ import preselections
 isDEV=False
 
 # Load configuration
+# why not import it directly?  
 with open("configuration.py") as handle:
     exec handle
 
@@ -29,38 +30,50 @@ if isDEV:
             continue
 
 # Define data to be loaded
+# We already imported preselections, why not use it directly?
 with open("./preselections.py") as handle:
     exec handle
 
 cut="(({0}) && ({1}))".format(supercut,preselections['OSSF'])
 
-mvaVariables = [
-   'WH3l_dphilllmet',
-   'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0)',
-   'MinIf$( WH3l_ptOSll[], WH3l_ptOSll[Iteration$] > 0)',
-   'MinIf$( WH3l_drOSll[], WH3l_drOSll[Iteration$] > 0)',
-   # 'WH3l_drOSll[0]',
-   # 'WH3l_drOSll[1]',
-   'WH3l_ZVeto',
-   # 'WH3l_mOSll[0]',
-   # 'WH3l_mOSll[1]',
-   'WH3l_ptlll',
-   'WH3l_mtlmet[0]',
-   'WH3l_mtlmet[1]',
-   'WH3l_mtlmet[2]',
-   # 'WH3l_ptOSll[0]',
-   # 'WH3l_ptOSll[1]',
-   'WH3l_dphilmet[0]',
-   'WH3l_dphilmet[1]',
-   'WH3l_dphilmet[2]',
-   'WH3l_ptWWW',
-   'WH3l_mtWWW',
-   'WH3l_mlll',
-   'PuppiMET_pt',
-   'Alt$(Lepton_pt[0],0)',
-   'Alt$(Lepton_pt[1],0)',
-   'Alt$(Lepton_pt[2],0)'
+mvaVariables = [    'mll',
+    'Lepton_pt[0]',
+    'Sort(CleanJet_qgl_valid)[0]',
+    'Sort(CleanJet_qgl_valid)[1]',
+    'LowestQGLJet_pt1',
+    'LowestQGLJet_pt2',
+    'LowestQGLJet_eta1',
+    'LowestQGLJet_eta2',
 ]
+
+
+# mvaVariables = [
+#    'WH3l_dphilllmet',
+#    'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0)',
+#    'MinIf$( WH3l_ptOSll[], WH3l_ptOSll[Iteration$] > 0)',
+#    'MinIf$( WH3l_drOSll[], WH3l_drOSll[Iteration$] > 0)',
+#    # 'WH3l_drOSll[0]',
+#    # 'WH3l_drOSll[1]',
+#    'WH3l_ZVeto',
+#    # 'WH3l_mOSll[0]',
+#    # 'WH3l_mOSll[1]',
+#    'WH3l_ptlll',
+#    'WH3l_mtlmet[0]',
+#    'WH3l_mtlmet[1]',
+#    'WH3l_mtlmet[2]',
+#    # 'WH3l_ptOSll[0]',
+#    # 'WH3l_ptOSll[1]',
+#    'WH3l_dphilmet[0]',
+#    'WH3l_dphilmet[1]',
+#    'WH3l_dphilmet[2]',
+#    'WH3l_ptWWW',
+#    'WH3l_mtWWW',
+#    'WH3l_mlll',
+#    'PuppiMET_pt',
+#    'Alt$(Lepton_pt[0],0)',
+#    'Alt$(Lepton_pt[1],0)',
+#    'Alt$(Lepton_pt[2],0)'
+# ]
 
 # :    1 : WH3l_ZVeto                                      : 8.013e-02
 # :    2 : MinIf$(WH3l_mOSll[],WH3l_mOSll[Iteration$]>0)   : 6.387e-02

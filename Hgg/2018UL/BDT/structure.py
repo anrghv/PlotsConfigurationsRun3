@@ -3,33 +3,28 @@
 #structure = {}
 
 # keys here must match keys in samples.py
-#
 
-# Backgrounds
+#=======================================
+#==============Backgrounds==============
+#=======================================
 
-structure['Wg']  = {
+structure['DY']  = {
     'isSignal' : 0,
     'isData'   : 0
 }
 
-structure['Zg']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-
-structure['WgS']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-structure['ZgS']  = {
+structure['top']  = {
     'isSignal' : 0,
     'isData'   : 0
 }
 
 
-structure['ZZ']  = {
+structure['Vg']  = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
+
+structure['VgS']  = {
     'isSignal' : 0,
     'isData'   : 0
 }
@@ -41,33 +36,40 @@ structure['WZ']  = {
 }
 
 
-structure['VVV']  = {
+structure['ZZ']  = {
     'isSignal' : 0,
     'isData'   : 0
 }
 
 
-# Signals
+structure['VVV']  = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
 
-structure['WH_hww_plus'] = {
+#=======================================
+#===============Signals=================
+#=======================================
+
+structure['Hgluglu'] = {
     'isSignal' : 1,
     'isData'   : 0
 }
 
-structure['WH_hww_minus'] = {
+structure['qqZHgluglu'] = {
     'isSignal' : 1,
     'isData'   : 0
 }
 
-structure['WH_htt_plus'] = {
+structure['ggZHgluglu'] = {
     'isSignal' : 1,
     'isData'   : 0
 }
 
-structure['WH_htt_minus'] = {
-    'isSignal' : 1,
-    'isData'   : 0
-}
+# structure['WH_htt_minus'] = {
+#     'isSignal' : 1,
+#     'isData'   : 0
+# }
 
 # data
 

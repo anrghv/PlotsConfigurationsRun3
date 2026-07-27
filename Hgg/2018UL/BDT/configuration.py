@@ -5,7 +5,7 @@ import os
 tagName = ''
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.74
+lumi = 59.83
 
 # file with list of cuts
 cutsFile = 'cuts_BDTTrain.py'

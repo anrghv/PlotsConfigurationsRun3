@@ -3,23 +3,23 @@ from ROOT import TMVA, TFile, TTree, TCut, TChain
 from subprocess import call
 from os.path import isfile
 
-import configOSSF_cfg as config
+import configHgg_cfg  as config
 
 # Setup TMVA
 def runJob():
     # For setup the TMVA environment.
     TMVA.Tools.Instance()
     # Needed for TMVA to communicate with python
-    TMVA.PyMethodBase.PyInitialize()
+    # TMVA.PyMethodBase.PyInitialize()
 
-    output = TFile.Open('TMVA_OSSF.root', 'RECREATE') # Output root file
+    output = TFile.Open('TMVA_Hgg.root', 'RECREATE') # Output root file
     # -----------------------------------------------------------------------------------------------------------------
     # -----------------------Understand this line ---------------------------------------------------------------------
     factory = TMVA.Factory('TMVAClassification', output,'!V:!Silent:Color:DrawProgressBar:AnalysisType=Classification')
     # factory = TMVA.Factory('TMVAClassification', output,'!V:!Silent:Color:DrawProgressBar:Transformations=D,G:AnalysisType=Classification')
     # -----------------------------------------------------------------------------------------------------------------
 
-    dataloader = TMVA.DataLoader('datasetOSSF') # Create a new dataloader. It will contain the training and test data.
+    dataloader = TMVA.DataLoader('datasetHgg') # Create a new dataloader. It will contain the training and test data.
     for br in config.mvaVariables:
         dataloader.AddVariable(br)
 
@@ -27,11 +27,10 @@ def runJob():
         if config.structure[sampleName]['isData']==1: #skips data from the training
             continue
 
-        sample['tree'] = TChain("Events")
-        print sampleName
-        # print sample['name']
-        for f in sample['name']:
-            # print f
+    sample['tree'] = TChain("Events")
+    print(sampleName)
+    for tag, filelist in sample['name']:    
+        for f in filelist:
             sample['tree'].Add(f)
 
         if config.structure[sampleName]['isSignal']==1:

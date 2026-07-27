@@ -153,9 +153,6 @@ samples["Hgluglu"] = {
 # 59000×0.8839×0.08187×0.033658×3
 #
 
-
-print(">>> USING LOCAL ZHllHgg SAMPLE <<<")
-
 files = nanoGetLocalSampleFiles("/eos/user/a/amassiro/HIG/ZHggPostProc/Summer20UL18_106x_nAODv9_Full2018v9/MCFull2018v9/", "ZHllHgg")
 
 samples["qqZHgluglu"] = {
@@ -289,6 +286,7 @@ samples['VVV'] = {
     'FilesPerJob': 4
 }
 
+#========================================================================================
 ###########################################
 #############   SIGNALS  ##################
 ###########################################
