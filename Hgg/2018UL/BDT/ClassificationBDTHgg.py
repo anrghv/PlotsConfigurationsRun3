@@ -56,7 +56,8 @@ def runJob():
 
     print("Finished loading all samples")
     print("Preparing train/test trees...")  
-    dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'nTrain_Signal=10_000:nTrain_Background=10_000:nTest_Signal=5_000:nTest_Background=5_000:SplitMode=Random:NormMode=NumEvents:!V')
+    dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'SplitMode=Random:NormMode=NumEvents:!V')
+    # dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'nTrain_Signal=10_000:nTrain_Background=10_000:nTest_Signal=5_000:nTest_Background=5_000:SplitMode=Random:NormMode=NumEvents:!V')
     print("Finished PrepareTrainingAndTestTree")
     # dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'nTrain_Signal=100000:nTrain_Background=100000:SplitMode=Random:NormMode=NumEvents:!V')#SSSF
     print("Starting BookMethod")

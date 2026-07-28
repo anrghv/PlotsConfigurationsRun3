@@ -5,10 +5,10 @@ import os
 from ROOT import gROOT, TFile, TChain, TCut
 
 # import models
-import preselections
-import aliases
+# import preselections
+# import aliases
 
-isDEV=True
+isDEV=False
 
 # Load configuration
 # why not import it directly?  
@@ -40,7 +40,13 @@ if isDEV:
 with open("./preselections.py") as handle:
     exec(handle.read())
 
-cut="(({0}) && ({1}))".format(supercut,preselections)
+# cut="(({0}) && ({1})) && ({2})".format(supercut,preselections,bVeto_cut)
+cut = (
+    preselections
+    + " && ("
+    + aliases["bVeto"]["expr"]
+    + ")"
+)
 
 
 # mvaVariables = [
@@ -54,13 +60,11 @@ cut="(({0}) && ({1}))".format(supercut,preselections)
 # # 'Jet_qgl[0]',
 # # 'Alt$(Jet_qgl[1],0)'
 # ]
-mvaVariables = [    
-    'mll',
-    # 'Lepton_pt[0]',
-    # # 'Sort(CleanJet_qgl_valid)[0]', x
-    # # 'Sort(CleanJet_qgl_valid)[1]', x
-    # 'LowestQGLJet_pt1', 
-    # 'LowestQGLJet_pt2',
-    # 'LowestQGLJet_eta1',
-    # 'LowestQGLJet_eta2,
+mvaVariables = [
+    "mll",
+    "Lepton_pt[0]",
+    # aliases["LowestQGLJet_pt1"]["expr"],
+    # aliases["LowestQGLJet_pt2"]["expr"],
+    # aliases["LowestQGLJet_eta1"]["expr"],
+    # aliases["LowestQGLJet_eta2"]["expr"],
 ]

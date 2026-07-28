@@ -20,7 +20,13 @@ preselections = (
     " && abs(Lepton_eta[0]) < 2.5"
     " && abs(Lepton_eta[1]) < 2.5"
     " && (abs(Lepton_pdgId[0]) == abs(Lepton_pdgId[1]))"
+    # "&& bVeto"
+    # " && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Take(Jet_btagDeepB, CleanJet_jetIdx) > 0.4168) == 0"
+    # " && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && (Jet_btagDeepB[CleanJet_jetIdx] > 0.4168)) == 0"
+    # " && (abs(CleanJet_eta) < 2.5 ) == 0"
 )
+
+# bVeto_cut =  "Sum(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Take(Jet_btagDeepB, CleanJet_jetIdx) > 0.4168) == 0"
 # ======================================================================================================================================
 # preselections = {}
 

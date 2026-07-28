@@ -56,20 +56,20 @@ structure['Hgluglu'] = {
     'isData'   : 0
 }
 
-# structure['qqZHgluglu'] = {
-#     'isSignal' : 1,
-#     'isData'   : 0
-# }
+structure['qqZHgluglu'] = {
+    'isSignal' : 1,
+    'isData'   : 0
+}
 
-# structure['ggZHgluglu'] = {
-#     'isSignal' : 1,
-#     'isData'   : 0
-# }
+structure['ggZHgluglu'] = {
+    'isSignal' : 1,
+    'isData'   : 0
+}
 
-# structure['WH_htt_minus'] = {
-#     'isSignal' : 1,
-#     'isData'   : 0
-# }
+structure['WH_htt_minus'] = {
+    'isSignal' : 1,
+    'isData'   : 0
+}
 
 # data
 

@@ -1,7 +1,7 @@
 import os
 import copy
 import inspect
-import configuration
+# import configuration
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # Full2018_v7
@@ -41,51 +41,58 @@ aliases['LepWPCut'] = {
 }
 
 aliases['CleanJet_qgl'] = {
-    'expr': 'Take(Jet_qgl, CleanJet_jetIdx)'
+    # 'expr': 'Take(Jet_qgl, CleanJet_jetIdx)'
+    'expr': 'Jet_qgl[CleanJet_jetIdx]'
 }
 
 aliases['CleanJet_qgl_valid'] = {
-    'expr': 'CleanJet_qgl[CleanJet_qgl >= 0]'
+    # 'expr': 'CleanJet_qgl[CleanJet_qgl >= 0]'
+    'expr': 'CleanJet_qgl[CleanJet_qgl]'
 }
 
 aliases['LowestQGLIdx'] = {
-    'expr': 'Take(Nonzero(CleanJet_qgl >= 0), Argsort(CleanJet_qgl[CleanJet_qgl >= 0]))'
+    # 'expr': 'Take(Nonzero(CleanJet_qgl >= 0), Argsort(CleanJet_qgl[CleanJet_qgl >= 0]))'
+    'expr': 'Nonzero(CleanJet_qgl >= 0)[Argsort(CleanJet_qgl[CleanJet_qgl >= 0])]'
 }
 
 aliases['LowestQGLJet_pt1'] = {
-    'expr': 'Alt(CleanJet_pt, LowestQGLIdx[0], 0)'
+    # 'expr': 'Alt$(CleanJet_pt, LowestQGLIdx[0], 0)'
+    'expr': 'Alt$(CleanJet_pt[LowestQGLIdx[0]], 0)'
 }
 
 aliases['LowestQGLJet_pt2'] = {
-    'expr': 'Alt(CleanJet_pt, LowestQGLIdx[1], 0)'
+    'expr': 'Alt$(CleanJet_pt[LowestQGLIdx[1]], 0)'
 }
 
 aliases['LowestQGLJet_pt3'] = {
-    'expr': 'Alt(CleanJet_pt, LowestQGLIdx[2], 0)'
+    'expr': 'Alt$(CleanJet_pt[LowestQGLIdx[2]], 0)'
 }
 
 aliases['LowestQGLJet_eta1'] = {
-    'expr': 'Alt(CleanJet_eta, LowestQGLIdx[0], 99)'
+    # 'expr': 'Alt$(CleanJet_eta, LowestQGLIdx[0], 99)'
+    'expr': 'Alt$(CleanJet_eta[LowestQGLIdx[0]], 99)'
 }
 
 aliases['LowestQGLJet_eta2'] = {
-    'expr': 'Alt(CleanJet_eta, LowestQGLIdx[1], 99)'
+    'expr': 'Alt$(CleanJet_eta[LowestQGLIdx[1]], 99)'
 }
 
 aliases['LowestQGLJet_phi1'] = {
-    'expr': 'Alt(CleanJet_phi, LowestQGLIdx[0], 99)'
+    'expr': 'Alt$(CleanJet_phi[LowestQGLIdx[0]], 99)'
 }
 
 aliases['LowestQGLJet_phi2'] = {
-    'expr': 'Alt(CleanJet_phi, LowestQGLIdx[1], 99)'
+    'expr': 'Alt$(CleanJet_phi[LowestQGLIdx[1]], 99)'
 }
 
 aliases['LowestQGLJet_mass1'] = {
-    'expr': 'Alt(CleanJet_mass, LowestQGLIdx[0], 0)'
+    # 'expr': 'Alt$(CleanJet_mass, LowestQGLIdx[0], 0)'
+    'expr': 'Alt$(CleanJet_mass[LowestQGLIdx[0]], 0)'
 }
 
 aliases['LowestQGLJet_mass2'] = {
-    'expr': 'Alt(CleanJet_mass, LowestQGLIdx[1], 0)'
+    # 'expr': 'Alt$(CleanJet_mass, LowestQGLIdx[1], 0)'
+    'expr': 'Alt$(CleanJet_mass[LowestQGLIdx[1]], 0)'
 }
 
 
@@ -143,7 +150,7 @@ bSF   = 'deepcsv'
 
 # b veto
 aliases['bVeto'] = {
-    'expr': 'Sum(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Take(Jet_btag{}, CleanJet_jetIdx) > {}) == 0'.format(bAlgo, bWP)
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && (Jet_btag{}[CleanJet_jetIdx] > {})) == 0'.format(bAlgo, bWP)
 }
 
 aliases['bVetoSF'] = {
@@ -154,7 +161,7 @@ aliases['bVetoSF'] = {
 
 # At least one b-tagged jet
 aliases['bReq'] = {
-    'expr': 'Sum(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Take(Jet_btag{}, CleanJet_jetIdx) > {}) >= 1'.format(bAlgo, bWP)
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && (Jet_btag{}[CleanJet_jetIdx] > {})) >= 1'.format(bAlgo, bWP)
 }
 
 aliases['bReqSF'] = {
