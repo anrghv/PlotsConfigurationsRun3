@@ -71,7 +71,8 @@ mcSteps = 'MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9'
 ##############################################
 
 treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
-limitFiles  = -1  # why on earth would you want to limit the number of files? Debug reason??
+# limitFiles  = -1  # why on earth would you want to limit the number of files? Debug reason??
+limitFiles  = 1  # why on earth would you want to limit the number of files? Debug reason??
 
 def makeMCDirectory(var=''):
     if var:
@@ -200,20 +201,20 @@ samples['Hgluglu'] = {
 }
 signals.append('Hgluglu')
 
-samples['qqZHgluglu'] = {
-    'name': nanoGetLocalSampleFiles(signal_path, 'ZHllHgg'),
-    "weight": "baseW*genWeight*0.7612*0.08187*0.033658*3",
-    "FilesPerJob": 200,
-}
-signals.append('qqZHgluglu')
+# samples['qqZHgluglu'] = {
+#     'name': nanoGetLocalSampleFiles(signal_path, 'ZHllHgg'),
+#     "weight": "baseW*genWeight*0.7612*0.08187*0.033658*3",
+#     "FilesPerJob": 200,
+# }
+# signals.append('qqZHgluglu')
 
 
-samples['ggZHgluglu'] = {
-    'name':  nanoGetLocalSampleFiles(signal_path, 'ggZHllHgg'),
-    'weight': "baseW*genWeight*0.1227*0.08187*0.033658*3",
-    'FilesPerJob': 200
-}
-signals.append('ggZHgluglu')
+# samples['ggZHgluglu'] = {
+#     'name':  nanoGetLocalSampleFiles(signal_path, 'ggZHllHgg'),
+#     'weight': "baseW*genWeight*0.1227*0.08187*0.033658*3",
+#     'FilesPerJob': 200
+# }
+# signals.append('ggZHgluglu')
 
 # samples['WH_htt_minus'] = {
 #     'name':  nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),

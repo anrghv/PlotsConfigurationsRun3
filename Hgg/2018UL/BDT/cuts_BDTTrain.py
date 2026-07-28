@@ -1,6 +1,6 @@
 # cuts
 
-supercut = 'true'
+supercut = '1'
 
 # supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
 #             && Alt$(Lepton_pt[0],0)>10 \

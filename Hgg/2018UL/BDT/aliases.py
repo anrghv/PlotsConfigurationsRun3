@@ -1,6 +1,7 @@
 import os
 import copy
 import inspect
+import configuration
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # Full2018_v7
@@ -10,7 +11,17 @@ configurations = os.path.dirname(configurations) # WH_chargeAsymmetry
 configurations = os.path.dirname(configurations) # Configurations
 
 aliases = {}
-aliases = OrderedDict()
+# aliases = OrderedDict()
+
+with open("configuration.py") as handle:
+    exec(handle.read())
+
+samples={}
+structure={}
+cuts={}
+for f in [samplesFile, structureFile, cutsFile]:
+    with open(f) as handle:
+        exec(handle.read())
 
 # imported from samples.py:
 # samples, signals

@@ -1,16 +1,40 @@
-# Generated output
+# Generated analysis output
 rootFiles/
 plots_Hgg_2018UL/
 condor/
 configs/
 
+# TMVA output
+BDT/dataset*/
+BDT/plots_BDT*/
+BDT/weights/
+BDT/TMVA_*.root
+BDT/*.root
+BDT/*.xml
+BDT/*.class.C
+
 # Python
 __pycache__/
-*.pyc
-
-# ROOT files
-*.root
+*.py[cod]
 
 # Plots
 *.png
 *.pdf
+
+# Logs
+*.log
+
+# Temporary / metadata files
+._*
+.af*
+*.tmp
+
+# Editor
+.vscode/
+.idea/
+*~
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
