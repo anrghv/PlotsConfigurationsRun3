@@ -1,20 +1,19 @@
-# Configuration for WH3l BDT training
+# Configuration for Hgg BDT training
 
-Configurations to train the BDTs used in the WH3l analysis. We prepare two separate trainings, for two final states:
+<!-- Configurations to train the BDTs used in the Hgg analysis. We prepare two separate trainings, for two final states:
 - same-sign same flavor (SSSF)
-- opposite-sign same flavor (OSSF)
+- opposite-sign same flavor (OSSF) -->
 
-We consider as signals the WH samples:
-- WH_plus_hww
-- WH_minus_hww
-- WH_plus_htt
-- WH_minus_htt
+The signal samples are:
+- Hgluglu
+- qqZHgluglu
+- ggZHgluglu
 
 And as backgrounds:
-- Wg
-- Zg
-- Wg*
-- Zg*
+- Dy
+- top
+- Vg
+- VgS
 - ZZ
 - WZ
 - VVV
@@ -24,13 +23,13 @@ The instructions to run the trainings follow.
 
 ### Train BDTs
 
-SS-SF:
 
-    python ClassificationBDTSSSF.py
 
-OS-SF:
+    python ClassificationBDTHgg.py
 
-    python ClassificationBDTOSSF.py
+<!-- OS-SF: -->
+<!--  -->
+    <!-- python ClassificationBDTOSSF.py -->
 
 
 ### Plot training results
