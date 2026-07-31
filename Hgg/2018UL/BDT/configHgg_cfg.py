@@ -8,7 +8,7 @@ from ROOT import gROOT, TFile, TChain, TCut
 # import preselections
 # import aliases
 
-isDEV=False
+isDEV=True
 
 # Load configuration
 # why not import it directly?  
@@ -61,8 +61,9 @@ cut = (
 # # 'Alt$(Jet_qgl[1],0)'
 # ]
 mvaVariables = [
-    "mll",
-    "Lepton_pt[0]",
+    # "mll",
+    # "Lepton_pt[0]",
+    "LowestQGLIdx"
     # aliases["LowestQGLJet_pt1"]["expr"],
     # aliases["LowestQGLJet_pt2"]["expr"],
     # aliases["LowestQGLJet_eta1"]["expr"],

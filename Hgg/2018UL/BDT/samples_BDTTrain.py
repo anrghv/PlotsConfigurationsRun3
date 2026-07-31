@@ -71,8 +71,8 @@ mcSteps = 'MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9'
 ##############################################
 
 treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
-limitFiles  = -1  # why on earth would you want to limit the number of files? Debug reason??
-# limitFiles  = 1  # why on earth would you want to limit the number of files? Debug reason??
+# limitFiles  = -1  # why on earth would you want to limit the number of files? Debug reason??
+limitFiles  = 1  # why on earth would you want to limit the number of files? Debug reason??
 
 def makeMCDirectory(var=''):
     if var:

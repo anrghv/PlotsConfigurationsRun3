@@ -51,9 +51,9 @@ aliases['CleanJet_qgl_valid'] = {
 }
 
 aliases['LowestQGLIdx'] = {
-    # 'expr': 'Take(Nonzero(CleanJet_qgl >= 0), Argsort(CleanJet_qgl[CleanJet_qgl >= 0]))'
-    'expr': 'Nonzero(CleanJet_qgl >= 0)[Argsort(CleanJet_qgl[CleanJet_qgl >= 0])]'
+    'expr': 'Nonzero$(CleanJet_qgl >= 0)[Argsort$(CleanJet_qgl[CleanJet_qgl >= 0])]'
 }
+    # 'expr': 'Take(Nonzero(CleanJet_qgl >= 0), Argsort(CleanJet_qgl[CleanJet_qgl >= 0]))'
 
 aliases['LowestQGLJet_pt1'] = {
     # 'expr': 'Alt$(CleanJet_pt, LowestQGLIdx[0], 0)'
