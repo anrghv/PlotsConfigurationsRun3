@@ -1,90 +1,106 @@
-#!/usr/bin/env python
-from ROOT import TMVA, TFile, TTree, TCut, TChain
-from subprocess import call
-from os.path import isfile
+#!usr/bin/env python
+import ROOT
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_auc_score, roc_curve
+from xgboost import XGBClassifier
+import pickle
+import os
+import mkShapesRDF
 
-import configHgg_cfg  as config
+import configHgg_cfg as config
 
-# Setup TMVA
+ROOT.gInterpreter.Declare("using namespace ROOT::VecOps;")
+ROOT.gErrorIgnoreLevel = ROOT.kError
+# /afs/cern.ch/user/a/araghav/Analyses/Run3/mkShapesRDF/mkShapesRDF
+
+headers_path = os.path.join(os.path.dirname(mkShapesRDF.__file__), "include", "headers.hh")
+
+with open(headers_path) as f:
+    ROOT.gInterpreter.Declare(f.read())
+# ROOT.gInterpreter.Declare('#include "<path>/headers.hh"')
+
+def aliases_applies(sampleName, aliases):
+    if 'samples' not in aliases:
+        return True
+    scope = aliases['samples']
+    if isinstance(scope, str):
+        return sampleName == scope
+    return sampleName in scope
+
+def build_dataframe(sampleName, sample):
+    chain = ROOT.TChain("Events")
+    for tag, filelist, *rest in sample['name']:
+        for f in filelist:
+            chain.Add(f)
+
+    df = ROOT.RDataFrame(chain)
+    for aliasName, alias in config.aliases.items():
+        if aliases_applies(sampleName, alias):
+            df = df.Define(aliasName, alias['expr'])
+    
+    df = df.Filter(config.cut)
+    df = df.Define("eventWeight", sample['weight'])
+    return df
+
 def runJob():
-    # For setup the TMVA environment.
-    TMVA.Tools.Instance()
-    # Needed for TMVA to communicate with python
-    # TMVA.PyMethodBase.PyInitialize()
+    isSignalMap = {name: (1 if name in config.signals else 0) for name in config.samples}
 
-    output = TFile.Open('TMVA_Hgg.root', 'RECREATE') # Output root file
-    # -----------------------------------------------------------------------------------------------------------------
-    # -----------------------Understand this line ---------------------------------------------------------------------
-    factory = TMVA.Factory('TMVAClassification', output,'!V:!Silent:Color:DrawProgressBar:AnalysisType=Classification')
-    # factory = TMVA.Factory('TMVAClassification', output,'!V:!Silent:Color:DrawProgressBar:Transformations=D,G:AnalysisType=Classification')
-    # -----------------------------------------------------------------------------------------------------------------
-
-    def alias_applies(sampleName, alias):
-        if 'samples' not in alias:
-            return True
-        scope = alias['samples']
-        # print("Checking if alias applies to sample: ", sampleName, " with scope: ", scope)
-        if isinstance(scope, str):
-            return sampleName == scope
-        return sampleName in scope
-
-    dataloader = TMVA.DataLoader('datasetHgg') # Create a new dataloader. It will contain the training and test data.
-    for br in config.mvaVariables:
-        dataloader.AddVariable(br)
+    all_X, all_y, all_w = [], [], []
 
     for sampleName, sample in config.samples.items():
-        print("Processing sample: ", sampleName)
-        if config.structure[sampleName]['isData']==1: #skips data from the training
-            print("Skipping sample: ", sampleName, " because it is data")
+        print("Processing sample:", sampleName)
+        df = build_dataframe(sampleName, sample)
+
+        cols = config.mvaVariables + ["eventWeight"]
+        data = df.AsNumpy(columns=cols)
+
+        n = len(data["eventWeight"])
+        if n == 0:
+            print(f"No events found for sample {sampleName}. Skipping.")
             continue
+        
+        X = np.column_stack([data[v] for v in config.mvaVariables])
+        w = data["eventWeight"]
+        w = np.abs(w)  # Ensure weights are positive
+        y = np.full(n,isSignalMap[sampleName])
 
-        sample['tree'] = TChain("Events")
-        print(sampleName)
-        for tag, filelist, *rest in sample['name']:    
-            for f in filelist:
-                sample['tree'].Add(f)
-        for aliasName, alias in config.aliases.items():
-            if alias_applies(sampleName, alias):
-                sample['tree'].SetAlias(aliasName, alias['expr'])
-                # print("Setting alias: ", aliasName, " for sample: ", sampleName, " with expression: ", alias['expr'])
-                
-        if config.structure[sampleName]['isSignal']==1:
-            dataloader.AddSignalTree(sample['tree'], 1.0)
-        else:
-            dataloader.AddBackgroundTree(sample['tree'], 1.0)
-        # output_dim += 1
+        print (f"Sample {sampleName}: {n} events, {np.sum(y)} signal events.")
+        all_X.append(X)
+        all_y.append(y)
+        all_w.append(w)
 
-    print("Finished loading all samples")
-    print("Preparing train/test trees...")  
-    # dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'SplitMode=Random:NormMode=NumEvents:!V')
-    dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'nTrain_Signal=10_000:nTrain_Background=10_000:nTest_Signal=5_000:nTest_Background=5_000:SplitMode=Random:NormMode=NumEvents:!V')
-    print("Finished PrepareTrainingAndTestTree")
-    # dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'nTrain_Signal=100000:nTrain_Background=100000:SplitMode=Random:NormMode=NumEvents:!V')#SSSF
-    print("Starting BookMethod")
-    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=50:MaxDepth=2" );
-    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=2" );
-    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4D3",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=3" );
-    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4D4",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=4" );
-    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4D5",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=5" );
-    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4D6",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=6" );
-    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4C3", "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=300:MaxDepth=2" );
-    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4SK01",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.01:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=2" );
-    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4F07"    ,   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.7:nCuts=500:MaxDepth=2" );
-    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4SK01F07",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.01:UseBaggedBoost:GradBaggingFraction=0.7:nCuts=500:MaxDepth=2" );
-    print("Finished BookMethod")
+    X = np.concatenate(all_X)
+    y = np.concatenate(all_y)
+    w = np.concatenate(all_w)
 
-    # Run training, test and evaluation
-    
-    print("Starting training...")
-    factory.TrainAllMethods()
-    factory.TestAllMethods()
-    factory.EvaluateAllMethods()
+    X_train, X_test, y_train, y_test, w_train, w_test = train_test_split(X, y, w, test_size=0.2, random_state=42, stratify=y)
 
-    output.Close()
+    clf = XGBClassifier(
+        n_estimators=500,
+        max_depth=2,
+        learning_rate=0.05,
+        subsample=0.5,
+        eval_metric = "logloss",
+    )
 
-from ROOT import gInterpreter
-gInterpreter.Declare('using namespace ROOT::VecOps;')
+    clf.fit(X_train, y_train, sample_weight=w_train)
 
+    train_scores = clf.predict_proba(X_train)[:, 1]
+    test_scores = clf.predict_proba(X_test)[:, 1]
+
+    print("Train AUC:", roc_auc_score(y_train, train_scores, sample_weight=w_train))
+    print("Test AUC:", roc_auc_score(y_test, test_scores, sample_weight=w_test))
+
+    with open("xgb_Hgg.pkl", "wb") as f:
+        pickle.dump(clf, f)
+
+    np.savez("bdt_Hgg_scores_train.npz", 
+              y_train=y_train,train_scores=train_scores, w_train=w_train,
+              y_test=y_test, test_scores=test_scores, w_test=w_test)
+
+    for var, imp in zip(config.mvaVariables, clf.feature_importances_):
+        print(f"Feature: {var}, Importance: {imp}")
 
 if __name__ == "__main__":
     runJob()

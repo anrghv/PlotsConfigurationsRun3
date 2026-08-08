@@ -8,12 +8,12 @@ UseXROOTD = True
 redirector = 'root://eoscms.cern.ch/'
 # /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/WH3l/BDTconfig/Full2018_nAODv4
 
-configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2018_nAODv4
-configurations = os.path.dirname(configurations) # BDTconfig
-configurations = os.path.dirname(configurations) # WH3l
-configurations = os.path.dirname(configurations) # WH_chargeAsymmetry
-configurations = os.path.dirname(configurations) # Configurations
+# configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+# configurations = os.path.dirname(configurations) # Full2018_nAODv4
+# configurations = os.path.dirname(configurations) # BDTconfig
+# configurations = os.path.dirname(configurations) # WH3l
+# configurations = os.path.dirname(configurations) # WH_chargeAsymmetry
+# configurations = os.path.dirname(configurations) # Configurations
 
 # from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight, getBaseWnAOD
 
@@ -72,7 +72,7 @@ mcSteps = 'MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9'
 
 treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 # limitFiles  = -1  # why on earth would you want to limit the number of files? Debug reason??
-limitFiles  = 1  # why on earth would you want to limit the number of files? Debug reason??
+limitFiles  = 10  # why on earth would you want to limit the number of files? Debug reason??
 
 def makeMCDirectory(var=''):
     if var:
@@ -216,9 +216,4 @@ samples['ggZHgluglu'] = {
 }
 signals.append('ggZHgluglu')
 
-# samples['WH_htt_minus'] = {
-#     'name':  nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 4
-# }
-# signals.append('WH_htt_minus')
+isSignalMap = {name: (1 if name in signals else 0) for name in samples}

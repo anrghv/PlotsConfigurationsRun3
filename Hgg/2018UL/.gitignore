@@ -12,6 +12,7 @@ BDT/TMVA_*.root
 BDT/*.root
 BDT/*.xml
 BDT/*.class.C
+*.npz
 
 # Python
 __pycache__/

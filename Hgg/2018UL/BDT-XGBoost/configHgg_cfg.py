@@ -4,10 +4,6 @@ from __future__ import print_function
 import os
 from ROOT import gROOT, TFile, TChain, TCut
 
-# import models
-# import preselections
-# import aliases
-
 isDEV=True
 
 # Load configuration
@@ -40,32 +36,28 @@ if isDEV:
 with open("./preselections.py") as handle:
     exec(handle.read())
 
-# cut="(({0}) && ({1})) && ({2})".format(supercut,preselections,bVeto_cut)
-cut = (
-    preselections
-    + " && ("
-    + aliases["bVeto"]["expr"]
-    + ")"
-)
+cut="(({0}) && ({1}))".format(supercut,preselections)
+# cut = (
+#     preselections
+#     + " && ("
+#     + aliases["bVeto"]["expr"]
+#     + ")"
+# )
 
 
-# mvaVariables = [
-#     'mll',
-# # 'Lepton_pt[0]',
-# # 'Lepton_pt[1]', 
-# # # 'CleanJet_pt[0]',
-# # 'Alt$(CleanJet_pt[0],0)',
-# # # 'CleanJet_pt[1]',
-# # 'Alt$(CleanJet_pt[1],0)',
-# # 'Jet_qgl[0]',
-# # 'Alt$(Jet_qgl[1],0)'
-# ]
+
 mvaVariables = [
-    # "mll",
-    # "Lepton_pt[0]",
-    "LowestQGLIdx"
-    # aliases["LowestQGLJet_pt1"]["expr"],
-    # aliases["LowestQGLJet_pt2"]["expr"],
-    # aliases["LowestQGLJet_eta1"]["expr"],
-    # aliases["LowestQGLJet_eta2"]["expr"],
+    'mll',
+    # 'Lepton_pt[0]',
+    # 'Lepton_pt[1]',
+    # 'PuppiMET_pt',
+    #  "LowestQGLIdx"
+    'LowestQGLJet_pt1',
+    # 'LowestQGLJet_pt2',
+    # 'LowestQGLJet_eta1',
+    # 'LowestQGLJet_eta2',
+    # 'mjj_qgl',
+    # 'detajj_qgl',
+    # 'ptjj_qgl',
+    # 'drjj_qgl',
 ]

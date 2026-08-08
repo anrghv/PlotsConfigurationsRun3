@@ -24,7 +24,8 @@ mc_special = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Hgluglu'
 eleWP = 'mvaFall17V2Iso_WP90'
 muWP  = 'cut_Tight_HWWW'
 
-aliases['CleanJet_qgl'] = {
+# -----------------------------------------------
+aliases['CleanJet_qgl'] = { #---------------------------------------------------------
     'expr': 'Take(Jet_qgl, CleanJet_jetIdx)'
 }
 
@@ -71,7 +72,7 @@ aliases['LowestQGLJet_mass1'] = {
 aliases['LowestQGLJet_mass2'] = {
     'expr': 'Alt(CleanJet_mass, LowestQGLIdx[1], 0)'
 }
-
+ #________--------------------------------------------------------------------------
 
 '''
 aliases['mjj_qgl_cc'] = {
@@ -87,6 +88,7 @@ aliases['mjj_qgl'] = {
 }
 '''
 
+#-----------------------------------------------------------
 aliases['mjj_qgl'] = {
     'expr': 'LowestQGLIdx.size() >= 2 ? (ROOT::Math::PtEtaPhiMVector(CleanJet_pt[LowestQGLIdx[0]],CleanJet_eta[LowestQGLIdx[0]],CleanJet_phi[LowestQGLIdx[0]],CleanJet_mass[LowestQGLIdx[0]])+ROOT::Math::PtEtaPhiMVector(CleanJet_pt[LowestQGLIdx[1]],CleanJet_eta[LowestQGLIdx[1]],CleanJet_phi[LowestQGLIdx[1]],CleanJet_mass[LowestQGLIdx[1]])).M() : -9999.0'
 }
@@ -103,7 +105,7 @@ aliases['drjj_qgl'] = {
     'expr': 'LowestQGLIdx.size() >= 2 ? DeltaR(LowestQGLJet_eta1, LowestQGLJet_eta2, LowestQGLJet_phi1, LowestQGLJet_phi2) : -9999.0'
 }
 
-
+#-----------------------------------------------------------
 aliases['LepWPCut'] = {
     'expr' : 'LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW*\
      ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
@@ -313,7 +315,7 @@ bWP_tight_deepFlavB  = '0.7100'
 bAlgo = 'DeepB'          # ['DeepB',        'DeepFlavB'         ]
 bWP   = bWP_medium_deepB # [bWP_loose_deepB, bWP_loose_deepFlavB]
 bSF   = 'deepcsv'        # ['deepcsv',      'deepjet'           ]
-
+#------------------------------------------------------------------------------
 # b veto
 aliases['bVeto'] = {
     'expr': 'Sum(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Take(Jet_btag{}, CleanJet_jetIdx) > {}) == 0'.format(bAlgo, bWP)
@@ -335,7 +337,7 @@ aliases['bReqSF'] = {
     #'samples': mc
     'samples' : mc_special
 }
-
+#--------------------------------------------------------------------------------
 # Top control region
 aliases['topcr'] = {
     'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
