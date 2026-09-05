@@ -8,7 +8,7 @@ if any(machine in os.uname()[1] for machine in ['portal','bms']):
     site = 'kit'
 
 # Tag used to identify the configuration folder version
-tag = 'Hgg_2018UL'
+tag = '0509_Hgg_2018UL'
 
 # File to use as runner script, default uses mkShapesRDF.shapeAnalysis.runner, otherwise specify path to script
 runnerFile = "default"
@@ -18,7 +18,7 @@ outputFile = "mkShapes__{}.root".format(tag)
 
 
 # Path to ouput folder
-outputFolder = "rootFiles"
+outputFolder = "/eos/user/" + os.getlogin()[0] + "/" + os.getlogin() + "/mkShapesRDF_rootfiles/" + tag + "/rootFile/"
 # Path to ouput folder
 #outputFolder = "/eos/user/" + os.getlogin()[0] + "/" + os.getlogin() + "/mkShapesRDF_rootfiles/" + tag + "/rootFile/"
 #if site == 'kit':
@@ -57,7 +57,9 @@ structureFile = "structure.py"
 nuisancesFile = "nuisances.py"
 
 # Path to folder where to save plots
-plotPath = 'plots_' + tag
+# plotPath = 'plots_' + tag
+plotPath = "/eos/user/a/araghav/www/plots_Hgg_2018UL/" + tag
+
 
 # This lines are executed right before the runner on the condor node
 mountEOS = []

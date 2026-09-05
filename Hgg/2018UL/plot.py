@@ -5,12 +5,12 @@
 
 groupPlot = {}
 
-groupPlot['top']  = {  
-    'nameHR'   : 'tW+ and t#bar{t}',
-    'isSignal' : 0,
-    'color'    : 400,   # kYellow
-    'samples'  : ['top']
-}
+# groupPlot['top']  = {  
+#     'nameHR'   : 'tW+ and t#bar{t}',
+#     'isSignal' : 0,
+#     'color'    : 400,   # kYellow
+#     'samples'  : ['top']
+# }
 
 #groupPlot['Fake']  = {  
     #'nameHR'   : 'Non-prompt',
@@ -26,41 +26,41 @@ groupPlot['DY']  = {
     'samples'  : ['DY']
 }
 
-groupPlot['VVV']  = {  
-    'nameHR'   : 'VVV',
-    'isSignal' : 0,
-    'color'    : 857, # kAzure -3  
-    'samples'  : ['VVV']
-}
+# groupPlot['VVV']  = {  
+#     'nameHR'   : 'VVV',
+#     'isSignal' : 0,
+#     'color'    : 857, # kAzure -3  
+#     'samples'  : ['VVV']
+# }
 
-groupPlot['ZZ']  = {  
-    'nameHR'   : "ZZ",
-    'isSignal' : 0,
-    'color'    : 617,   # kViolet + 1  
-    'samples'  : ['ZZ']
-}
+# groupPlot['ZZ']  = {  
+#     'nameHR'   : "ZZ",
+#     'isSignal' : 0,
+#     'color'    : 617,   # kViolet + 1  
+#     'samples'  : ['ZZ']
+# }
 
-groupPlot['WZ']  = {    
-    'nameHR'   : "WZ",
-    'isSignal' : 0,
-    'color'    : 619,   # kViolet + 1  
-    'samples'  : ['WZ']
-}
+# groupPlot['WZ']  = {    
+#     'nameHR'   : "WZ",
+#     'isSignal' : 0,
+#     'color'    : 619,   # kViolet + 1  
+#     'samples'  : ['WZ']
+# }
 
-groupPlot['Vg']  = {
-    'nameHR' : "V#gamma",
-    'isSignal' : 0,
-    #'color'    : 810,   # kOrange + 10
-    'color'    : 408,   # kGreen - 10
-    'samples'  : ['Vg']
-}
+# groupPlot['Vg']  = {
+#     'nameHR' : "V#gamma",
+#     'isSignal' : 0,
+#     #'color'    : 810,   # kOrange + 10
+#     'color'    : 408,   # kGreen - 10
+#     'samples'  : ['Vg']
+# }
 
-groupPlot['VgS']  = {
-    'nameHR' : "V#gamma*",
-    'isSignal' : 0,
-    'color'    : 409,   # kGreen - 9
-    'samples'  : ['VgS']
-}
+# groupPlot['VgS']  = {
+#     'nameHR' : "V#gamma*",
+#     'isSignal' : 0,
+#     'color'    : 409,   # kGreen - 9
+#     'samples'  : ['VgS']
+# }
 
 #groupPlot['ZgS']  = {
     #'nameHR' : "Z#gamma*",
@@ -98,13 +98,13 @@ groupPlot['Hgluglu']  = {
 }
 
 
-groupPlot['HglugluAlt']  = {
-    'nameHR'   : 'H>gluglu (split) x 100',
-    'isSignal' : 3,
-    # 'color'    : 633, # kRed+1
-    'color'    : 857, # kAzure -3
-    'samples'  : ['ggZHgluglu', 'qqZHgluglu']
-}
+# groupPlot['HglugluAlt']  = {
+#     'nameHR'   : 'H>gluglu (split) x 100',
+#     'isSignal' : 3,
+#     # 'color'    : 633, # kRed+1
+#     'color'    : 857, # kAzure -3
+#     'samples'  : ['qqZHgluglu']
+# }
 
 
 
@@ -114,13 +114,13 @@ groupPlot['HglugluAlt']  = {
 plot = {}
 
 
-plot['top'] = {   
-    'nameHR' : 'tW and t#bar{t}',
-    'color'    : 400,   # kYellow
-    'isSignal' : 0,
-    'isData'   : 0, 
-    'scale'    : 1.0,
-}
+# plot['top'] = {   
+#     'nameHR' : 'tW and t#bar{t}',
+#     'color'    : 400,   # kYellow
+#     'isSignal' : 0,
+#     'isData'   : 0, 
+#     'scale'    : 1.0,
+# }
 
 plot['DY']  = {  
     'nameHR'   : 'DY',
@@ -130,45 +130,45 @@ plot['DY']  = {
     'scale'    : 1.0,
 }
 
-plot['Vg']  = {
-    'nameHR'   : 'Vg',
-    'color'    : 859, # kAzure -1  
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0
-}
+# plot['Vg']  = {
+#     'nameHR'   : 'Vg',
+#     'color'    : 859, # kAzure -1  
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0
+# }
 
-plot['VgS']  = { 
-    'nameHR'   : 'VgS',
-    'color'    : 859, # kAzure -1  
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0
-}
+# plot['VgS']  = { 
+#     'nameHR'   : 'VgS',
+#     'color'    : 859, # kAzure -1  
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0
+# }
 
-plot['WZ']  = {
-    'nameHR'   : 'WZ',
-    'color'    : 858, # kAzure -2  
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.138 # NLO -> NNLO k-factor!
-}
+# plot['WZ']  = {
+#     'nameHR'   : 'WZ',
+#     'color'    : 858, # kAzure -2  
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.138 # NLO -> NNLO k-factor!
+# }
 
-plot['ZZ']  = { 
-    'nameHR'   : 'ZZ',
-    'color'    : 858, # kAzure -2  
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0
-}
+# plot['ZZ']  = { 
+#     'nameHR'   : 'ZZ',
+#     'color'    : 858, # kAzure -2  
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0
+# }
 
-plot['VVV']  = { 
-    'nameHR'   : 'VVV',
-    'color'    : 857, # kAzure -3  
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0
-}
+# plot['VVV']  = { 
+#     'nameHR'   : 'VVV',
+#     'color'    : 857, # kAzure -3  
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0
+# }
 
 ###########
 # Signals #
@@ -184,26 +184,26 @@ plot['Hgluglu'] = {
 }
 
 
-plot['ggZHgluglu'] = {
-    'nameHR'   : 'ggZHgluglu',
-    'color'    : 857, # kAzure -3
-    # 'color'    : 634, # kRed+2
-    'isSignal' : 3,
-    'isData'   : 0,
-    'scale'    : 100
-    #'scale'    : 0.000033658   # I missed the BR Z>ll and a *1000 too much
-}
+# plot['ggZHgluglu'] = {
+#     'nameHR'   : 'ggZHgluglu',
+#     'color'    : 857, # kAzure -3
+#     # 'color'    : 634, # kRed+2
+#     'isSignal' : 3,
+#     'isData'   : 0,
+#     'scale'    : 100
+#     #'scale'    : 0.000033658   # I missed the BR Z>ll and a *1000 too much
+# }
 
 
-plot['qqZHgluglu'] = {
-    'nameHR'   : 'qqZHgluglu',
-    'color'    : 856, # kAzure -4
-    # 'color'    : 633, # kRed+1
-    'isSignal' : 3,
-    'isData'   : 0,
-    'scale'    : 100
-    #'scale'    : 0.000033658   # I missed the BR Z>ll and a *1000 too much
-}
+# plot['qqZHgluglu'] = {
+#     'nameHR'   : 'qqZHgluglu',
+#     'color'    : 856, # kAzure -4
+#     # 'color'    : 633, # kRed+1
+#     'isSignal' : 3,
+#     'isData'   : 0,
+#     'scale'    : 100
+#     #'scale'    : 0.000033658   # I missed the BR Z>ll and a *1000 too much
+# }
 
 
 
@@ -359,5 +359,5 @@ plot['DATA']  = {
 
 legend = {}
 
-legend['lumi'] = 'L = 102.8 fb^{-1}'
+legend['lumi'] = 'L = 59.8 fb^{-1}'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
