@@ -1,6 +1,7 @@
 # cuts
 
 cuts = {}
+# cuts['signal_region_bdt'] = 'bdt_score > 0.65'
 
 preselections = 'mll>12  \
               && Lepton_pt[0]>25 \
@@ -123,7 +124,7 @@ cuts['Sig'] = {
         'centraldetamjjdRptjjdphijj':
             'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>75.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && ptjj_qgl>20.0 && dphijj_qgl<2.4 && QGLcut',
 
-        'centraldetamjjdRptjjdphijjJetQgl':
-            'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>75.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && ptjj_qgl>20.0 && dphijj_qgl<2.4 && qgl_j1_lowestqgl<0.4 && QGLcut',
+        'centraldetamjjdRptjjdphijjJetQgl_BDT':
+            'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>75.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && ptjj_qgl>20.0 && dphijj_qgl<2.4 && qgl_j1_lowestqgl<0.4 && QGLcut && bdt_score>0.65',
     }
 }
