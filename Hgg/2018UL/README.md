@@ -78,6 +78,8 @@ Once all the jobs have finished, you can merge them:
     mkPlot
     mkPlot --onlyPlot cratio --showIntegralLegend 1 --fileFormats png   
     mkPlot --onlyPlot cratio --showIntegralLegend 1 --fileFormats png  --plotNormalizedDistributions
+
+    mkPlot --onlyVariable "your variable name" --onlyPlot cratio --showIntegralLegend 1 --fileFormats png --plotNormalizedDistributions
     
 
 ### to check kerberos
