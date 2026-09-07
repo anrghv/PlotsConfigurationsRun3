@@ -24,6 +24,9 @@ mc_special = [skey for skey in samples if skey not in ('Fake', 'DATA', 'qqZHglug
 eleWP = 'mvaFall17V2Iso_WP90'
 muWP  = 'cut_Tight_HWWW'
 
+header_path = "/afs/cern.ch/user/a/araghav/Analyses/Run3/ml-hep/BDT_XGBoost"
+header_path = os.path.join(header_path, "headers.h")
+
 aliases['CleanJet_qgl'] = {
     'expr': 'Take(Jet_qgl, CleanJet_jetIdx)'
 }
@@ -553,3 +556,31 @@ aliases['hole_veto'] = {
     #'expr'           : 'BDT_WHSS(mll,mjj,mtw1,mtw2,ptll,mlljj20_whss,PuppiMET_pt,dphill,dphijj,dphillmet,dphilmet2,dphijet1met,CleanJet_pt,Jet_btagDeepB,CleanJet_jetIdx)',
     #'samples'        : mc + ['DATA','Fake'],
 #}
+
+# aliases['bdt_score'] = {
+#     'linesToAdd': [
+#         f'#include "{header_path}"'
+#     ],
+#     'expr': (
+#         'eval_xgboost('
+#         'detajj_qgl, drjj_qgl, mjj_qgl, dphijj_qgl, '
+#         'LowestQGLJet_eta1, LowestQGLJet_eta2, LowestQGLJet_pt1, LowestQGLJet_pt2, '
+#         'ptjj_qgl, dphilljetjet_qgl, drjj, detajj, '
+#         'PuppiMET_pt, Lepton_pt[0], Lepton_pt[1], ptll'
+#         ')'
+#     )
+# }
+
+aliases['bdt_score'] = {
+    'linesToAdd': [
+        f'#include "{header_path}"'
+    ],
+    'expr': (
+        'eval_xgboost('
+        'detajj_qgl, drjj_qgl, mjj_qgl, dphijj_qgl, '
+        'LowestQGLJet_eta1, LowestQGLJet_eta2, LowestQGLJet_pt1, LowestQGLJet_pt2, '
+        'ptjj_qgl, dphilljetjet_qgl, drjj, detajj, '
+        'PuppiMET_pt, Lepton_pt[0], Lepton_pt[1], ptll'
+        ')'
+    )
+}
