@@ -9,6 +9,8 @@ variables = {}
 #         'cuts': ['sr']
 #         }
 
+
+
 variables['ptj1'] = {
         'name': 'Alt(CleanJet_pt,0,0)',
         'range': (100, 10, 100),
@@ -322,3 +324,10 @@ variables['ptjj_qgl']      = {   'name': 'ptjj_qgl',            #   variable nam
 #                             'xaxis' : 'pt_{jj} [GeV]',  #   x axis name
 #                             'fold' :0
 #                         }
+
+variables['bdt_score'] = {
+    'name': 'bdt_score',
+    'range': (40, 0.0, 1.0),
+    'xaxis': 'XGBoost BDT Response',
+    'fold': 0
+}
