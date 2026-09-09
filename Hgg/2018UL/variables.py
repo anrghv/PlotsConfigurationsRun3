@@ -329,5 +329,5 @@ variables['bdt_score'] = {
     'name': 'bdt_score',
     'range': (40, 0.0, 1.0),
     'xaxis': 'XGBoost BDT Response',
-    'fold': 0
+    'fold': 0   
 }
