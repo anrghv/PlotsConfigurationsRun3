@@ -24,19 +24,17 @@ mc_special = [skey for skey in samples if skey not in ('Fake', 'DATA', 'qqZHglug
 eleWP = 'mvaFall17V2Iso_WP90'
 muWP  = 'cut_Tight_HWWW'
 
-# import os
-# header_path = "/afs/cern.ch/user/a/araghav/Analyses/Run3/ml-hep/BDT_XGBoost"
-header_path = "/afs/cern.ch/user/a/araghav/Analyses/Run3/PlotsConfigurationsRun3/Hgg/2018UL/"
-header_path = os.path.join(header_path, "headers.h")
+header_dir = "/afs/cern.ch/user/a/araghav/Analyses/Run3/PlotsConfigurationsRun3/Hgg/2018UL/"
+header_path = os.path.join(header_dir, "headers.h")
 
-# if not os.path.exists(header_path):
-#     raise FileNotFoundError(f"Header file not found: {header_path}. Please ensure the path is correct.")
-# else:
-#     print(f"Header file found: {header_path}. Proceeding with configuration.")
+if not os.path.exists(header_path):
+    raise FileNotFoundError(f"Header file not found: {header_path}. Please ensure the path is correct.")
+else:
+    print(f"Header file found: {header_path}. Proceeding with configuration.")
 
 #     # Read the header file and include its contents
-#     with open(header_path, 'r') as f:
-#         header_contents = f.read()
+    with open(header_path, 'r') as f:
+        header_contents = f.read()
 #         print(f"Header file contents:\n{header_contents[:500]}...")  # Print first 500 characters for verification
 
 aliases['CleanJet_qgl'] = {
@@ -583,16 +581,25 @@ aliases['hole_veto'] = {
 #     )
 # }
 
+mva_vars = [
+    'Lepton_pt[0]', 'Lepton_pt[1]', 'ptll', 'mll',
+    'PuppiMET_pt',
+    'LowestQGLJet_pt1', 'LowestQGLJet_pt2', 'LowestQGLJet_pt3',
+    'LowestQGLJet_eta1', 'LowestQGLJet_eta2',
+    'LowestQGLJet_phi1', 'LowestQGLJet_phi2',
+    'LowestQGLJet_mass1', 'LowestQGLJet_mass2',
+    'qgl_j1_lowestqgl',
+    'btagDeepBj1_lowestqgl', 'btagDeepBj2_lowestqgl',
+    'btagCSVV2j1_lowestqgl', 'btagCSVV2j2_lowestqgl',
+    'mjj', 'mjj_qgl', 'ptjj_qgl',
+    'detajj', 'detajj_qgl',
+    'dphijj', 'dphijj_qgl',
+    'drjj', 'drjj_qgl',
+    'dphilljet', 'dphilljet_qgl',
+    'dphilljetjet', 'dphilljetjet_qgl',
+]
+
 aliases['bdt_score'] = {
-    'linesToAdd': [
-        f'#include "{header_path}"'
-    ],
-    'expr': (
-        'eval_xgboost('
-        'mjj_qgl, dphijj_qgl, '
-        'LowestQGLJet_eta1, LowestQGLJet_eta2, LowestQGLJet_pt1, LowestQGLJet_pt2, '
-        'ptjj_qgl, dphilljetjet_qgl, detajj, '
-        'Lepton_pt[0], Lepton_pt[1], ptll'
-        ')'
-    )
+    'linesToAdd': [f'#include "{header_path}"'],
+    'expr': 'eval_xgboost(' + ', '.join(mva_vars) + ')',
 }

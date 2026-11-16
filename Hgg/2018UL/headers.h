@@ -4,33 +4,47 @@
 #include <TMVA/RBDT.hxx>
 #include <vector>
 
-// 1-Fold evaluation (Single model)
+// Single-model evaluation.
+// Argument order MUST match mvaVariables in xgb_train.py exactly (32 features).
 inline float eval_xgboost(
-    float mjj_qgl, float dphijj_qgl,
-    float LowestQGLJet_eta1, float LowestQGLJet_eta2, float LowestQGLJet_pt1,
-    float LowestQGLJet_pt2, float ptjj_qgl, float dphilljetjet_qgl,
-    float detajj,  float lep_pt0, float lep_pt1, float ptll
-
-    // float detajj_qgl, float drjj_qgl  ,
-    // ,  float drjj, ,
-    // float PuppiMET_pt,
+    float Lepton_pt0, float Lepton_pt1, float ptll, float mll,
+    float PuppiMET_pt,
+    float LowestQGLJet_pt1, float LowestQGLJet_pt2, float LowestQGLJet_pt3,
+    float LowestQGLJet_eta1, float LowestQGLJet_eta2,
+    float LowestQGLJet_phi1, float LowestQGLJet_phi2,
+    float LowestQGLJet_mass1, float LowestQGLJet_mass2,
+    float qgl_j1_lowestqgl,
+    float btagDeepBj1_lowestqgl, float btagDeepBj2_lowestqgl,
+    float btagCSVV2j1_lowestqgl, float btagCSVV2j2_lowestqgl,
+    float mjj, float mjj_qgl, float ptjj_qgl,
+    float detajj, float detajj_qgl,
+    float dphijj, float dphijj_qgl,
+    float drjj, float drjj_qgl,
+    float dphilljet, float dphilljet_qgl,
+    float dphilljetjet, float dphilljetjet_qgl
 ) {
-    // static ensures the ROOT model file is read from EOS/AFS only ONCE
+    // static: the model file is read from EOS only once per process
     static TMVA::Experimental::RBDT bdt(
-        "bdt_model", 
-        "/eos/user/a/araghav/XGBoost/xgb_model.root"
+        "bdt_model",   // must equal the key used in SaveXGBoost
+        "/eos/user/a/araghav/xgboost/inputs_plot-config/xgb_Hgg_xgb_tuned_1.root"
     );
 
-    // Feature ordering MUST match mvaVariables from training exactly
     std::vector<float> inputs = {
-        mjj_qgl, dphijj_qgl, 
-        LowestQGLJet_eta1, LowestQGLJet_eta2, LowestQGLJet_pt1, LowestQGLJet_pt2,
-        ptjj_qgl, dphilljetjet_qgl,
-        detajj,
-        lep_pt0, lep_pt1, ptll
-        // drjj_qgl , dphijj_qgl,
-        // drjj, 
-        // PuppiMET_pt,
+        Lepton_pt0, Lepton_pt1, ptll, mll,
+        PuppiMET_pt,
+        LowestQGLJet_pt1, LowestQGLJet_pt2, LowestQGLJet_pt3,
+        LowestQGLJet_eta1, LowestQGLJet_eta2,
+        LowestQGLJet_phi1, LowestQGLJet_phi2,
+        LowestQGLJet_mass1, LowestQGLJet_mass2,
+        qgl_j1_lowestqgl,
+        btagDeepBj1_lowestqgl, btagDeepBj2_lowestqgl,
+        btagCSVV2j1_lowestqgl, btagCSVV2j2_lowestqgl,
+        mjj, mjj_qgl, ptjj_qgl,
+        detajj, detajj_qgl,
+        dphijj, dphijj_qgl,
+        drjj, drjj_qgl,
+        dphilljet, dphilljet_qgl,
+        dphilljetjet, dphilljetjet_qgl
     };
 
     return bdt.Compute(inputs)[0];

@@ -1,12 +1,11 @@
 # cuts
 
 cuts = {}
-# cuts['signal_region_bdt'] = 'bdt_score > 0.65'
 
 preselections = 'mll>12  \
               && Lepton_pt[0]>25 \
               && Lepton_pt[1]>10 \
-              && Alt(Lepton_pt,2,0) < 15 \
+              && Alt(Lepton_pt,2,0) < 10 \
               && (abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13) \
               && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
               && (abs(Lepton_pdgId[0])==abs(Lepton_pdgId[1])) \
@@ -17,16 +16,68 @@ preselections = 'mll>12  \
               #&& PuppiMET_pt > 30 \
               #&& !hole_veto \
 
+# cuts['Zhgg'] = (
+#     'QGLcut && '
+#     'mll>80 && mll<100 && '
+#     'Lepton_pt[0]>40 && '
+#     'LowestQGLJet_pt1>18 && LowestQGLJet_pt2>18 && '
+#     'abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && '
+#     'detajj_qgl<2.5 && '
+#     'mjj_qgl>60.0 && mjj_qgl<150.0 &&'
+#     'drjj_qgl<3.4 &&'
+#     'ptjj_qgl>  20.0' 
+# )
 
-## Same-sign control region in the 0 jet bin: used in the WH3l category. Considering different flavor to avoid DY
-#cuts['wh3l_13TeV_OS_CR'] = {
-    #'expr' : 'Alt(Lepton_pt,2,0) < 15 && abs(Lepton_pdgId[0]*Lepton_pdgId[1]) == 11*13 && Alt(CleanJet_pt,0,0) < 30',
-    #'categories' : {
-        #'pt2ge20'  : 'Lepton_pdgId[0]*Lepton_pdgId[1]<0',
-    #}
-#}
+cuts['Sig'] = {
+
+    'expr': 'mll > -9999',
+
+    'categories': {
+
+        'nocut':
+            'mll > -9999',
+
+#         'mllZ':
+#             'mll>80 && mll<100 && QGLcut',
+
+#         # 'mllZpt1':
+#         #     'mll>80 && mll<100 && Lepton_pt[0]>40 && QGLcut',
+
+#         # 'mllZpt1jetpt':
+#         #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>18 && LowestQGLJet_pt2>18 && QGLcut',
+
+#         # 'central':
+#         #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>18 && LowestQGLJet_pt2>18 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && QGLcut',
+
+#         # 'centraldeta':
+#         #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>18 && LowestQGLJet_pt2>18 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.5 && QGLcut',
+
+#         # 'centraldetamjj':
+#         #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>18 && LowestQGLJet_pt2>18 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.5 && mjj_qgl>60.0 && mjj_qgl<150.0 && QGLcut',
+
+#         # 'centraldetamjjdR':
+#         #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>18 && LowestQGLJet_pt2>18 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.5 && mjj_qgl>60.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && QGLcut',
+
+#         # 'centraldetamjjdRptjj':
+#         #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>18 && LowestQGLJet_pt2>18 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.5 && mjj_qgl>60.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && ptjj_qgl>20.0 && QGLcut',
+
+#         # 'centraldetamjjdRptjjdphijj':
+#         #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>60.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && ptjj_qgl>20.0 && dphijj_qgl<2.4 && dphijj_qgl>-2.4 && QGLcut',
+
+        # 'centraldetamjjdRptjjdphijjJetQgl':
+        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>60.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && ptjj_qgl>20.0 && dphijj_qgl<2.4 && dphijj_qgl>-2.4 && qgl_j1_lowestqgl<0.4 && QGLcut',
+    
+        # 'centraldetamjjdRptjjdphijjJetQgl_BDT':
+        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>75.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && ptjj_qgl>20.0 && dphijj_qgl<2.4 && qgl_j1_lowestqgl<0.4 && QGLcut && bdt_score>0.65',
+    
+        }
+}
 
 
+
+# ================================================================================================================================
+# ================================================================================================================================
+# ================================================================================================================================
 '''
 cuts['DY'] = {
     'expr' : 'Alt(Lepton_pt,2,0) < 15 && (abs(Lepton_pdgId[0])==abs(Lepton_pdgId[1]))',
@@ -87,44 +138,6 @@ cuts['Highest_pt_jets'] = {
     }
 }
 '''
-
-cuts['Sig'] = {
-
-    'expr': 'mll > -9999',
-
-    'categories': {
-
-        'nocut':
-            'mll > -9999',
-
-        # 'mllZ':
-        #     'mll>80 && mll<100 && QGLcut',
-
-        # 'mllZpt1':
-        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && QGLcut',
-
-        # 'mllZpt1jetpt':
-        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>18 && LowestQGLJet_pt2>18 && QGLcut',
-
-        # 'central':
-        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>18 && LowestQGLJet_pt2>18 && abs(LowestQGLJet_eta1)<2.8 && abs(LowestQGLJet_eta2)<2.8 && QGLcut',
-
-        # 'centraldeta':
-        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.8 && abs(LowestQGLJet_eta2)<2.8 && detajj_qgl<2.5 && QGLcut',
-
-        # 'centraldetamjj':
-        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>75.0 && mjj_qgl<150.0 && QGLcut',
-
-        # 'centraldetamjjdR':
-        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>75.0 && mjj_qgl<150.0 && drjj_qgl<3.8 && QGLcut',
-
-        # 'centraldetamjjdRptjj':
-        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>75.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && ptjj_qgl>20.0 && QGLcut',
-
-        # 'centraldetamjjdRptjjdphijj':
-        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>75.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && ptjj_qgl>20.0 && dphijj_qgl<2.4 && QGLcut',
-
-        # 'centraldetamjjdRptjjdphijjJetQgl_BDT':
-        #     'mll>80 && mll<100 && Lepton_pt[0]>40 && LowestQGLJet_pt1>20 && LowestQGLJet_pt2>20 && abs(LowestQGLJet_eta1)<2.5 && abs(LowestQGLJet_eta2)<2.5 && detajj_qgl<2.0 && mjj_qgl>75.0 && mjj_qgl<150.0 && drjj_qgl<3.4 && ptjj_qgl>20.0 && dphijj_qgl<2.4 && qgl_j1_lowestqgl<0.4 && QGLcut && bdt_score>0.65',
-    }
-}
+# =======================================================================================================================================================================================================
+# =======================================================================================================================================================================================================
+# =======================================================================================================================================================================================================

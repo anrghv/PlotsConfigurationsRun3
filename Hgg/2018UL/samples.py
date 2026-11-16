@@ -20,6 +20,7 @@ dataSteps    = 'DATAl1loose2018v9__l2loose__l2tightOR2018v9'
 
 treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 limitFiles  = -1  # why on earth would you want to limit the number of files? Debug reason??
+# limitFiles  = 1  # why on earth would you want to limit the number of files? Debug reason??
 
 
 def makeMCDirectory(var=''):
@@ -215,21 +216,31 @@ samples['DY'] = {
 }
 
 
-# ##### Top #######
+##### Top #######
 
-# files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-#         nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
-#         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-#         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-#         nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
-#         nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 
-# samples['top'] = {
-#     'name': files,
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 30,
-# }
-# addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+samples['top'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 30,
+}
+addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+
+### WW #######
+
+files = nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu')
+
+samples['WW'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 30,
+}
 
 
 
@@ -240,66 +251,66 @@ samples['DY'] = {
 # not affected by charge-flip:
 # all but DY, WW, and top
 
-# ######## Vg ########
-# files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
-#         nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
+######## Vg ########
+files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
+        nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
-# samples['Vg'] = {
-#     'name': files,
-#     'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)*1',
-#     'FilesPerJob': 30,
-# }
+samples['Vg'] = {
+    'name': files,
+    'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)*1',
+    'FilesPerJob': 30,
+}
 
-# ######## VgS ######## 
-# files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
-#         nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
-#         nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
+######## VgS ######## 
+files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
+        nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
+        nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
-# samples['VgS'] = {
-#     'name': files,
-#     'weight': mcCommonWeight + '*1',
-#     'FilesPerJob': 30,
-# }
-# addSampleWeight(samples, 'VgS', 'Wg_AMCNLOFXFX_01J',  '((Gen_ZGstar_mass > 0 && Gen_ZGstar_mass <= 0.1))*(gstarLow*0.94)')
-# addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin0p1', '((Gen_ZGstar_mass > 0.1)*(0.601644*58.59/4.666))*(gstarLow*0.94)')
-# addSampleWeight(samples, 'VgS', 'ZGToLLG',            '(Gen_ZGstar_mass > 0)')
-
-
-# ############ WZ ############
-# files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
-#         nanoGetSampleFiles(mcDirectory, 'WZTo2Q2L_mllmin4p0')
-
-# samples['WZ'] = {
-#     'name': files,
-#     'weight': mcCommonWeight + ' * (gstarHigh)*1',
-#     'FilesPerJob': 30
-# }
-# addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin0p1', '(0.601644*58.59/4.666)')
+samples['VgS'] = {
+    'name': files,
+    'weight': mcCommonWeight + '*1',
+    'FilesPerJob': 30,
+}
+addSampleWeight(samples, 'VgS', 'Wg_AMCNLOFXFX_01J',  '((Gen_ZGstar_mass > 0 && Gen_ZGstar_mass <= 0.1))*(gstarLow*0.94)')
+addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin0p1', '((Gen_ZGstar_mass > 0.1)*(0.601644*58.59/4.666))*(gstarLow*0.94)')
+addSampleWeight(samples, 'VgS', 'ZGToLLG',            '(Gen_ZGstar_mass > 0)')
 
 
-# ############ ZZ ############
-# files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
-#         nanoGetSampleFiles(mcDirectory, 'ZZTo2Q2L_mllmin4p0') + \
-#         nanoGetSampleFiles(mcDirectory, 'ZZTo4L')
+############ WZ ############
+files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
+        nanoGetSampleFiles(mcDirectory, 'WZTo2Q2L_mllmin4p0')
 
-# samples['ZZ'] = {
-#     'name': files,
-#     'weight': mcCommonWeight + '*1',
-#     'FilesPerJob': 30
-# }
+samples['WZ'] = {
+    'name': files,
+    'weight': mcCommonWeight + ' * (gstarHigh)*1',
+    'FilesPerJob': 30
+}
+addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin0p1', '(0.601644*58.59/4.666)')
 
 
-# ########## VVV #########
-# files = nanoGetSampleFiles(mcDirectory, 'ZZZ') + \
-#         nanoGetSampleFiles(mcDirectory, 'WZZ') + \
-#         nanoGetSampleFiles(mcDirectory, 'WWZ') + \
-#         nanoGetSampleFiles(mcDirectory, 'WWW')
+############ ZZ ############
+files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
+        nanoGetSampleFiles(mcDirectory, 'ZZTo2Q2L_mllmin4p0') + \
+        nanoGetSampleFiles(mcDirectory, 'ZZTo4L')
 
-# samples['VVV'] = {
-#     'name': files,
-#     'weight': mcCommonWeight + '*1',
-#     'FilesPerJob': 30
-# }
+samples['ZZ'] = {
+    'name': files,
+    'weight': mcCommonWeight + '*1',
+    'FilesPerJob': 30
+}
+
+
+########## VVV #########
+files = nanoGetSampleFiles(mcDirectory, 'ZZZ') + \
+        nanoGetSampleFiles(mcDirectory, 'WZZ') + \
+        nanoGetSampleFiles(mcDirectory, 'WWZ') + \
+        nanoGetSampleFiles(mcDirectory, 'WWW')
+
+samples['VVV'] = {
+    'name': files,
+    'weight': mcCommonWeight + '*1',
+    'FilesPerJob': 30
+}
 
 ###########################################
 #############   SIGNALS  ##################
@@ -400,6 +411,12 @@ samples['WH_htt_minus'] = {
 signals.append('WH_htt_minus')
 
 
+
+
+# =============================================================================================================================
+# =============================================================================================================================
+# =============================================================================================================================
+# =============================================================================================================================
 ###########################################
 ################## FAKE ###################
 ###########################################

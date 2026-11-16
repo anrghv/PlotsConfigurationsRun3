@@ -5,40 +5,21 @@
 
 groupPlot = {}
 
-# groupPlot['top']  = {  
-#     'nameHR'   : 'tW+ and t#bar{t}',
-#     'isSignal' : 0,
-#     'color'    : 400,   # kYellow
-#     'samples'  : ['top']
-# }
 
-#groupPlot['Fake']  = {  
-    #'nameHR'   : 'Non-prompt',
-    #'isSignal' : 0,
-    #'color'    : 921,    # kGray + 1
-    #'samples'  : ['Fake_mm','Fake_em','Fake_ee']
-#}
 
-groupPlot['DY']  = {  
-    'nameHR'   : "DY",
+groupPlot['VVV']  = {  
+    'nameHR'   : 'VVV',
     'isSignal' : 0,
-    'color'    : 418,    # kGreen+2
-    'samples'  : ['DY']
+    'color'    : 857, # kAzure -3  
+    'samples'  : ['VVV']
 }
 
-# groupPlot['VVV']  = {  
-#     'nameHR'   : 'VVV',
-#     'isSignal' : 0,
-#     'color'    : 857, # kAzure -3  
-#     'samples'  : ['VVV']
-# }
-
-# groupPlot['ZZ']  = {  
-#     'nameHR'   : "ZZ",
-#     'isSignal' : 0,
-#     'color'    : 617,   # kViolet + 1  
-#     'samples'  : ['ZZ']
-# }
+groupPlot['VV']  = {  
+    'nameHR'   : "VV",
+    'isSignal' : 0,
+    'color'    : 400,   # kViolet + 1  
+    'samples'  : ['WZ','WW','ZZ']
+}
 
 # groupPlot['WZ']  = {    
 #     'nameHR'   : "WZ",
@@ -47,13 +28,13 @@ groupPlot['DY']  = {
 #     'samples'  : ['WZ']
 # }
 
-# groupPlot['Vg']  = {
-#     'nameHR' : "V#gamma",
-#     'isSignal' : 0,
-#     #'color'    : 810,   # kOrange + 10
-#     'color'    : 408,   # kGreen - 10
-#     'samples'  : ['Vg']
-# }
+groupPlot['Vg']  = {
+    'nameHR' : "V#gamma/V#gamma*",
+    'isSignal' : 0,
+    #'color'    : 810,   # kOrange + 10
+    'color'    : 408,   # kGreen - 10
+    'samples'  : ['Vg','VgS']
+}
 
 # groupPlot['VgS']  = {
 #     'nameHR' : "V#gamma*",
@@ -62,20 +43,43 @@ groupPlot['DY']  = {
 #     'samples'  : ['VgS']
 # }
 
-#groupPlot['ZgS']  = {
-    #'nameHR' : "Z#gamma*",
-    #'isSignal' : 0,
-    #'color'    : 617,
-    #'samples'  : ['ZgS']
-#}
 
-groupPlot['Higgs']  = {  
-    'nameHR'   : 'H>WW/#tau#tau',
+
+groupPlot['top']  = {  
+    'nameHR'   : 'Top',
     'isSignal' : 0,
-    'color'    : 634, # kRed+2 
-    'samples'  : ['ggH_hww','qqH_hww','ZH_hww','ggZH_hww','ttH_hww','ggH_htt','qqH_htt','ZH_htt']
+    'color'    : 617,   # kYellow
+    'samples'  : ['top']
 }
 
+#groupPlot['Fake']  = {  
+    #'nameHR'   : 'Non-prompt',
+    #'isSignal' : 0,
+    #'color'    : 921,    # kGray + 1
+    #'samples'  : ['Fake_mm','Fake_em','Fake_ee']
+#}
+# groupPlot['WW']  = {  
+#     'nameHR'   : "WW",
+#     'isSignal' : 0,
+#     'color'    : 432,    # kCyan
+#     'samples'  : ['WW']
+# }
+
+
+groupPlot['DY']  = {  
+    'nameHR'   : "DY",
+    'isSignal' : 0,
+    'color'    : 418,    # kGreen+2
+    'samples'  : ['DY']
+}
+
+
+# groupPlot['Higgs']  = {  
+#     'nameHR'   : 'H>WW/#tau#tau',
+#     'isSignal' : 0,
+#     'color'    : 634, # kRed+2 
+#     'samples'  : ['ggH_hww','qqH_hww','ZH_hww','ggZH_hww','ttH_hww','ggH_htt','qqH_htt','ZH_htt']
+# }
 #groupPlot['WH_minus']  = {  
     #'nameHR'   : 'W^{-} H (x 10)',
     #'isSignal' : 0,
@@ -114,13 +118,13 @@ groupPlot['Hgluglu']  = {
 plot = {}
 
 
-# plot['top'] = {   
-#     'nameHR' : 'tW and t#bar{t}',
-#     'color'    : 400,   # kYellow
-#     'isSignal' : 0,
-#     'isData'   : 0, 
-#     'scale'    : 1.0,
-# }
+plot['top'] = {   
+    'nameHR' : 'top',
+    'color'    : 400,   # kYellow
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0,
+}
 
 plot['DY']  = {  
     'nameHR'   : 'DY',
@@ -130,45 +134,53 @@ plot['DY']  = {
     'scale'    : 1.0,
 }
 
-# plot['Vg']  = {
-#     'nameHR'   : 'Vg',
-#     'color'    : 859, # kAzure -1  
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
+plot['WW']  = {  
+    'nameHR'   : 'WW',
+    'color'    : 432,    # kCyan
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0,
+}
 
-# plot['VgS']  = { 
-#     'nameHR'   : 'VgS',
-#     'color'    : 859, # kAzure -1  
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
+plot['Vg']  = {
+    'nameHR'   : 'Vg',
+    'color'    : 859, # kAzure -1  
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
-# plot['WZ']  = {
-#     'nameHR'   : 'WZ',
-#     'color'    : 858, # kAzure -2  
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.138 # NLO -> NNLO k-factor!
-# }
+plot['VgS']  = { 
+    'nameHR'   : 'VgS',
+    'color'    : 859, # kAzure -1  
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
-# plot['ZZ']  = { 
-#     'nameHR'   : 'ZZ',
-#     'color'    : 858, # kAzure -2  
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
+plot['WZ']  = {
+    'nameHR'   : 'WZ',
+    'color'    : 858, # kAzure -2  
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.138 # NLO -> NNLO k-factor!
+}
 
-# plot['VVV']  = { 
-#     'nameHR'   : 'VVV',
-#     'color'    : 857, # kAzure -3  
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
+plot['ZZ']  = { 
+    'nameHR'   : 'ZZ',
+    'color'    : 858, # kAzure -2  
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
+
+plot['VVV']  = { 
+    'nameHR'   : 'VVV',
+    'color'    : 857, # kAzure -3  
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
 ###########
 # Signals #
@@ -318,29 +330,29 @@ plot['WH_htt_minus'] = {
 # Fake #
 ########
 
-plot['Fake_em']  = {  
-    'nameHR'   : 'Fake_em',
-    'color'    : 921,    # kGray + 1
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0                  
-}
+# plot['Fake_em']  = {  
+#     'nameHR'   : 'Fake_em',
+#     'color'    : 921,    # kGray + 1
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0                  
+# }
 
-plot['Fake_ee']  = {  
-    'nameHR'   : 'Fake_ee',
-    'color'    : 921,    # kGray + 1
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0                  
-}
+# plot['Fake_ee']  = {  
+#     'nameHR'   : 'Fake_ee',
+#     'color'    : 921,    # kGray + 1
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0                  
+# }
 
-plot['Fake_mm']  = { 
-    'nameHR'   : 'Fake_mm',
-    'color'    : 921,    # kGray + 1
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0                  
-}
+# plot['Fake_mm']  = { 
+#     'nameHR'   : 'Fake_mm',
+#     'color'    : 921,    # kGray + 1
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0                  
+# }
 
 ########
 # Data #
@@ -359,5 +371,5 @@ plot['DATA']  = {
 
 legend = {}
 
-legend['lumi'] = 'L = 59.8 fb^{-1}'
-legend['sqrt'] = '#sqrt{s} = 13 TeV'
+legend['lumi'] = 'L = 59.56 fb^{-1}'
+legend['sqrt'] = '13 TeV'

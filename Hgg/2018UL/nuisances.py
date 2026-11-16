@@ -177,86 +177,86 @@ nuisances['lumi_Correlated_2017_2018'] = {
 
 ##### B-tagger
 
-for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
-    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
+# for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+#     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
-    name = 'CMS_btag_%s' % shift
-    if 'stats' in shift:
-        name += '_2018'
+#     name = 'CMS_btag_%s' % shift
+#     if 'stats' in shift:
+#         name += '_2018'
 
-    nuisances['btag_shape_%s' % shift] = {
-        'name'    : name,
-        'kind'    : 'weight',
-        'type'    : 'shape',
-        'samples' : dict((skey, btag_syst) for skey in mc),
-    }
+#     nuisances['btag_shape_%s' % shift] = {
+#         'name'    : name,
+#         'kind'    : 'weight',
+#         'type'    : 'shape',
+#         'samples' : dict((skey, btag_syst) for skey in mc),
+#     }
 
-###### Trigger Scale Factors
+# ###### Trigger Scale Factors
 
-trig_syst = ['TriggerSFWeight_2l_u/TriggerSFWeight_2l', 'TriggerSFWeight_2l_d/TriggerSFWeight_2l']
+# trig_syst = ['TriggerSFWeight_2l_u/TriggerSFWeight_2l', 'TriggerSFWeight_2l_d/TriggerSFWeight_2l']
 
-nuisances['trigg'] = {
-    'name'    : 'CMS_eff_hwwtrigger_2018',
-    'kind'    : 'weight',
-    'type'    : 'shape',
-    'samples' : dict((skey, trig_syst) for skey in mc)
-}
-
-###### Electron Efficiency and energy scale
-
-nuisances['eff_e'] = {
-    'name'    : 'CMS_eff_e_2018',
-    'kind'    : 'weight',
-    'type'    : 'shape',
-    'samples' : dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
-}
-
-#nuisances['eff_ttHMVA_e'] = {
-    #'name'    : 'CMS_eff_ttHMVA_e_2018',
-    #'kind'    : 'weight',
-    #'type'    : 'shape',
-    #'samples' : dict((skey, ['LepWPttHMVASFEleUp', 'LepWPttHMVASFEleDown']) for skey in mc)
-#}
-
-nuisances['electronpt'] = {
-    'name'       : 'CMS_scale_e_2018',
-    'kind'       : 'suffix',
-    'type'       : 'shape',
-    'mapUp'      : 'ElepTup',
-    'mapDown'    : 'ElepTdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : makeMCDirectory('ElepTup_suffix'),
-    'folderDown' : makeMCDirectory('ElepTdo_suffix'),
-    'AsLnN'      : '0'
-}
-
-###### Muon Efficiency and energy scale
-
-nuisances['eff_m'] = {
-    'name'    : 'CMS_eff_m_2018',
-    'kind'    : 'weight',
-    'type'    : 'shape',
-    'samples' : dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
-}
-
-# nuisances['eff_ttHMVA_m'] = {
-#     'name'    : 'CMS_eff_ttHMVA_m_2018',
+# nuisances['trigg'] = {
+#     'name'    : 'CMS_eff_hwwtrigger_2018',
 #     'kind'    : 'weight',
 #     'type'    : 'shape',
-#     'samples' : dict((skey, ['LepWPttHMVASFMuUp', 'LepWPttHMVASFMuDown']) for skey in mc)
+#     'samples' : dict((skey, trig_syst) for skey in mc)
 # }
 
-nuisances['muonpt'] = {
-    'name'       : 'CMS_scale_m_2018',
-    'kind'       : 'suffix',
-    'type'       : 'shape',
-    'mapUp'      : 'MupTup',
-    'mapDown'    : 'MupTdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : makeMCDirectory('MupTup_suffix'),
-    'folderDown' : makeMCDirectory('MupTdo_suffix'),
-    'AsLnN'      : '0'
-}
+# ###### Electron Efficiency and energy scale
+
+# nuisances['eff_e'] = {
+#     'name'    : 'CMS_eff_e_2018',
+#     'kind'    : 'weight',
+#     'type'    : 'shape',
+#     'samples' : dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+# }
+
+# #nuisances['eff_ttHMVA_e'] = {
+#     #'name'    : 'CMS_eff_ttHMVA_e_2018',
+#     #'kind'    : 'weight',
+#     #'type'    : 'shape',
+#     #'samples' : dict((skey, ['LepWPttHMVASFEleUp', 'LepWPttHMVASFEleDown']) for skey in mc)
+# #}
+
+# nuisances['electronpt'] = {
+#     'name'       : 'CMS_scale_e_2018',
+#     'kind'       : 'suffix',
+#     'type'       : 'shape',
+#     'mapUp'      : 'ElepTup',
+#     'mapDown'    : 'ElepTdo',
+#     'samples'    : dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp'   : makeMCDirectory('ElepTup_suffix'),
+#     'folderDown' : makeMCDirectory('ElepTdo_suffix'),
+#     'AsLnN'      : '0'
+# }
+
+# ###### Muon Efficiency and energy scale
+
+# nuisances['eff_m'] = {
+#     'name'    : 'CMS_eff_m_2018',
+#     'kind'    : 'weight',
+#     'type'    : 'shape',
+#     'samples' : dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+# }
+
+# # nuisances['eff_ttHMVA_m'] = {
+# #     'name'    : 'CMS_eff_ttHMVA_m_2018',
+# #     'kind'    : 'weight',
+# #     'type'    : 'shape',
+# #     'samples' : dict((skey, ['LepWPttHMVASFMuUp', 'LepWPttHMVASFMuDown']) for skey in mc)
+# # }
+
+# nuisances['muonpt'] = {
+#     'name'       : 'CMS_scale_m_2018',
+#     'kind'       : 'suffix',
+#     'type'       : 'shape',
+#     'mapUp'      : 'MupTup',
+#     'mapDown'    : 'MupTdo',
+#     'samples'    : dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp'   : makeMCDirectory('MupTup_suffix'),
+#     'folderDown' : makeMCDirectory('MupTdo_suffix'),
+#     'AsLnN'      : '0'
+# }
 
 # ###### Jet energy scale
 # jes_systs    = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
@@ -291,51 +291,51 @@ nuisances['muonpt'] = {
 
 #### MET unclustered energy
 
-nuisances['met'] = {
-    'name'      : 'CMS_scale_met_2018',
-    'kind'      : 'suffix',
-    'type'      : 'shape',
-    'mapUp'     : 'METup',
-    'mapDown'   : 'METdo',
-    'samples'   : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'  : makeMCDirectory('METup_suffix'),
-    'folderDown': makeMCDirectory('METdo_suffix'),
-    'AsLnN'     : '0'
-}
+# nuisances['met'] = {
+#     'name'      : 'CMS_scale_met_2018',
+#     'kind'      : 'suffix',
+#     'type'      : 'shape',
+#     'mapUp'     : 'METup',
+#     'mapDown'   : 'METdo',
+#     'samples'   : dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp'  : makeMCDirectory('METup_suffix'),
+#     'folderDown': makeMCDirectory('METdo_suffix'),
+#     'AsLnN'     : '0'
+# }
 
 
-##### Pileup
+# ##### Pileup
 
-# puWeight_UL2018
-nuisances['PU'] = {
-    'name'    : 'CMS_pileup_2018',
-    'kind'    : 'weight',
-    'type'    : 'shape',
-    'samples' : {
-        'DY'      : ['0.998687*(puWeightUp/puWeight)', '1.001976*(puWeightDown/puWeight)'],
-        'top'     : ['1.002595*(puWeightUp/puWeight)', '0.997470*(puWeightDown/puWeight)'],
-        'WW'      : ['1.004449*(puWeightUp/puWeight)', '0.995660*(puWeightDown/puWeight)'],
-        'WWewk'   : ['1.002122*(puWeightUp/puWeight)', '0.998087*(puWeightDown/puWeight)'],
-        'ggWW'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'],
-        'WZ'      : ['0.999330*(puWeightUp/puWeight)', '1.000992*(puWeightDown/puWeight)'],
-        'ZZ'      : ['0.999469*(puWeightUp/puWeight)', '1.000751*(puWeightDown/puWeight)'],
-        'VVV'     : ['1.003485*(puWeightUp/puWeight)', '0.997561*(puWeightDown/puWeight)'],
-        'ggH_hww' : ['1.003677*(puWeightUp/puWeight)', '0.995996*(puWeightDown/puWeight)'],
-        'qqH_hww' : ['1.003747*(puWeightUp/puWeight)', '0.995878*(puWeightDown/puWeight)'],
-    },
-    'AsLnN'   : '0',
-}
+# # puWeight_UL2018
+# nuisances['PU'] = {
+#     'name'    : 'CMS_pileup_2018',
+#     'kind'    : 'weight',
+#     'type'    : 'shape',
+#     'samples' : {
+#         'DY'      : ['0.998687*(puWeightUp/puWeight)', '1.001976*(puWeightDown/puWeight)'],
+#         'top'     : ['1.002595*(puWeightUp/puWeight)', '0.997470*(puWeightDown/puWeight)'],
+#         'WW'      : ['1.004449*(puWeightUp/puWeight)', '0.995660*(puWeightDown/puWeight)'],
+#         'WWewk'   : ['1.002122*(puWeightUp/puWeight)', '0.998087*(puWeightDown/puWeight)'],
+#         'ggWW'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'],
+#         'WZ'      : ['0.999330*(puWeightUp/puWeight)', '1.000992*(puWeightDown/puWeight)'],
+#         'ZZ'      : ['0.999469*(puWeightUp/puWeight)', '1.000751*(puWeightDown/puWeight)'],
+#         'VVV'     : ['1.003485*(puWeightUp/puWeight)', '0.997561*(puWeightDown/puWeight)'],
+#         'ggH_hww' : ['1.003677*(puWeightUp/puWeight)', '0.995996*(puWeightDown/puWeight)'],
+#         'qqH_hww' : ['1.003747*(puWeightUp/puWeight)', '0.995878*(puWeightDown/puWeight)'],
+#     },
+#     'AsLnN'   : '0',
+# }
 
-### PU ID SF uncertainty
+# ### PU ID SF uncertainty
 
-puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
+# puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
 
-nuisances['jetPUID'] = {
-    'name'    : 'CMS_eff_j_PUJET_id_2018',
-    'kind'    : 'weight',
-    'type'    : 'shape',
-    'samples' : dict((skey, puid_syst) for skey in mc)
-}
+# nuisances['jetPUID'] = {
+#     'name'    : 'CMS_eff_j_PUJET_id_2018',
+#     'kind'    : 'weight',
+#     'type'    : 'shape',
+#     'samples' : dict((skey, puid_syst) for skey in mc)
+# }
 
 #### PS and UE
 

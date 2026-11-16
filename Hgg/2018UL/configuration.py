@@ -8,7 +8,7 @@ if any(machine in os.uname()[1] for machine in ['portal','bms']):
     site = 'kit'
 
 # Tag used to identify the configuration folder version
-tag = '0909_Hgg_2018UL_BDT'
+tag = '1311_Hgg_2018UL'
 
 # File to use as runner script, default uses mkShapesRDF.shapeAnalysis.runner, otherwise specify path to script
 runnerFile = "default"
