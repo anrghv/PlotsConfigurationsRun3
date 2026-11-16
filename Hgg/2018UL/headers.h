@@ -26,7 +26,7 @@ inline float eval_xgboost(
     // static: the model file is read from EOS only once per process
     static TMVA::Experimental::RBDT bdt(
         "bdt_model",   // must equal the key used in SaveXGBoost
-        "/eos/user/a/araghav/xgboost/inputs_plot-config/xgb_Hgg_xgb_tuned_1.root"
+        "/eos/user/a/araghav/xgboost/inputs_plot-config/xgb_Hgg_xgb_tuned_2.root"
     );
 
     std::vector<float> inputs = {
