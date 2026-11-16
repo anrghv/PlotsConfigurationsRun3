@@ -3,6 +3,7 @@ rootFiles/
 plots_Hgg_2018UL/
 condor/
 configs/
+datacards/
 
 # TMVA output
 BDT/dataset*/
@@ -39,3 +40,4 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
