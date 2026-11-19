@@ -19,8 +19,8 @@ dataSteps    = 'DATAl1loose2018v9__l2loose__l2tightOR2018v9'
 ##############################################
 
 treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
-limitFiles  = -1  # why on earth would you want to limit the number of files? Debug reason??
-# limitFiles  = 1  # why on earth would you want to limit the number of files? Debug reason??
+# limitFiles  = -1  # why on earth would you want to limit the number of files? Debug reason??
+limitFiles  = 1  # why on earth would you want to limit the number of files? Debug reason??
 
 
 def makeMCDirectory(var=''):
@@ -413,53 +413,10 @@ signals.append('WH_htt_minus')
 
 
 
-# =============================================================================================================================
-# =============================================================================================================================
-# =============================================================================================================================
-# =============================================================================================================================
-###########################################
-################## FAKE ###################
-###########################################
-
-#samples['Fake'] = {
-    #'name': [],
-    #'weight': 'METFilter_DATA*fakeW*1',
-    #'weights': [],
-    #'isData': ['all'],
-    #'FilesPerJob': 50
-#}
-
-#for _, sd in DataRun:
-  #for pd in DataSets:
-    #tag_data = pd + '_' + sd
-
-    #if (   ('DoubleMuon' in pd and 'Run2018B' in sd)
-        #or ('DoubleMuon' in pd and 'Run2018D' in sd)
-        #or ('SingleMuon' in pd and 'Run2018A' in sd)
-        #or ('SingleMuon' in pd and 'Run2018B' in sd)
-        #or ('SingleMuon' in pd and 'Run2018C' in sd)):
-        #print("sd      = {}".format(sd))
-        #print("pd      = {}".format(pd))
-        #print("Old tag = {}".format(tag_data))
-        #tag_data = tag_data.replace('v1','v2')
-        #print("New tag = {}".format(tag_data))
-
-    #files = nanoGetSampleFiles(fakeDirectory, tag_data)
-
-    #samples['Fake']['name'].extend(files)
-    #addSampleWeight(samples, 'Fake', tag_data, DataTrig[pd])
-
-#samples['Fake']['subsamples'] = {
-    #'em': 'abs(Lepton_pdgId[0]*Lepton_pdgId[1]) == 11*13',
-    #'mm': 'abs(Lepton_pdgId[0]*Lepton_pdgId[1]) == 13*13',
-    #'ee': 'abs(Lepton_pdgId[0]*Lepton_pdgId[1]) == 11*11'
-#}
-
-
 ###########################################
 ################## DATA ###################
 ###########################################
-'''
+
 samples['DATA'] = {
   'name': [],
   'weight': 'LepWPCut*METFilter_DATA*1',
@@ -487,4 +444,4 @@ for _, sd in DataRun:
 
     samples['DATA']['name'].extend(files)
     addSampleWeight(samples, 'DATA', tag_data, DataTrig[pd])
-    '''
+    

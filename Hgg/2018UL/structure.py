@@ -11,10 +11,10 @@ structure['DY']  = {
     'isData'   : 0,
 }
 
-structure['top'] = {   
-    'isSignal' : 0,
-    'isData'   : 0,
-}
+# structure['top'] = {   
+#     'isSignal' : 0,
+#     'isData'   : 0,
+# }
 
 structure['WW']  = {
     'isSignal' : 0,
@@ -31,31 +31,6 @@ structure['ggWW']  = {
     'isData'   : 0,
 }
 
-structure['Vg']  = { 
-    'isSignal' : 0,
-    'isData'   : 0,
-}
-
-structure['VgS']  = {
-    'isSignal' : 0,
-    'isData'   : 0,
-}
-
-structure['WZ'] = {
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scaleSampleForDatacard' : 1.138 # NLO -> NNLO k-factor
-}
-
-structure['ZZ']  = { 
-    'isSignal' : 0,
-    'isData'   : 0,
-}
-
-structure['VVV']  = { 
-    'isSignal' : 0,
-    'isData'   : 0,
-}
 
 
 # Higgs
@@ -65,24 +40,6 @@ structure['Hgluglu'] = {
     'isData'   : 0,
     #'scaleSampleForDatacard' : 10 # scaling signal to have sensitivity
 }
-
-# structure['qqZHgluglu'] = {
-#     'isSignal' : 1,
-#     'isData'   : 0,
-#     #'scaleSampleForDatacard' : 10 # scaling signal to have sensitivity
-# }
-
-# structure['ggZHgluglu'] = {
-#     'isSignal' : 1,
-#     'isData'   : 0,
-#     #'scaleSampleForDatacard' : 10 # scaling signal to have sensitivity
-# }
-
-# structure['WHgluglu'] = {
-#     'isSignal' : 1,
-#     'isData'   : 0,
-#     #'scaleSampleForDatacard' : 10 # scaling signal to have sensitivity
-# }
 
 
 
@@ -167,10 +124,9 @@ structure['Fake_em']  = {
     'isData'   : 0,
 }
 
-'''
+
 # Data
 structure['DATA']  = { 
     'isSignal' : 0,
     'isData'   : 1 
 }
-'''

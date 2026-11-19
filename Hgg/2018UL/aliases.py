@@ -37,6 +37,12 @@ else:
         header_contents = f.read()
 #         print(f"Header file contents:\n{header_contents[:500]}...")  # Print first 500 characters for verification
 
+
+aliases['CleanJet_mass'] = {
+    'expr': 'Take(Jet_mass, CleanJet_jetIdx)',
+    'samples': ['DATA'],
+}   
+
 aliases['CleanJet_qgl'] = {
     'expr': 'Take(Jet_qgl, CleanJet_jetIdx)'
 }
@@ -559,44 +565,22 @@ aliases['hole_veto'] = {
     ) ',
 }
 
-# Evaluate BDT discriminant
-#aliases['BDT_WHSS_TopSemileptonic_v9'] = {
-    #'linesToAdd'     : ['#include "%s/macros/BDT_WHSS_TopSemileptonic_v9_class.cc"' % configurations],
-    #'linesToProcess' : ["ROOT.gInterpreter.Declare('BDT_WHSS_TopSemileptonic_v9 BDT_WHSS = BDT_WHSS_TopSemileptonic_v9(\"BDTG_6\",\"{0}/data/BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml\");')".format(configurations)],
-    #'expr'           : 'BDT_WHSS(mll,mjj,mtw1,mtw2,ptll,mlljj20_whss,PuppiMET_pt,dphill,dphijj,dphillmet,dphilmet2,dphijet1met,CleanJet_pt,Jet_btagDeepB,CleanJet_jetIdx)',
-    #'samples'        : mc + ['DATA','Fake'],
-#}
 
-# aliases['bdt_score'] = {
-#     'linesToAdd': [
-#         f'#include "{header_path}"'
-#     ],
-#     'expr': (
-#         'eval_xgboost('
-#         'detajj_qgl, drjj_qgl, mjj_qgl, dphijj_qgl, '
-#         'LowestQGLJet_eta1, LowestQGLJet_eta2, LowestQGLJet_pt1, LowestQGLJet_pt2, '
-#         'ptjj_qgl, dphilljetjet_qgl, drjj, detajj, '
-#         'PuppiMET_pt, Lepton_pt[0], Lepton_pt[1], ptll'
-#         ')'
-#     )
-# }
 
 mva_vars = [
-    'Lepton_pt[0]', 'Lepton_pt[1]', 'ptll', 'mll',
-    'PuppiMET_pt',
-    'LowestQGLJet_pt1', 'LowestQGLJet_pt2', 'LowestQGLJet_pt3',
-    'LowestQGLJet_eta1', 'LowestQGLJet_eta2',
-    'LowestQGLJet_phi1', 'LowestQGLJet_phi2',
-    'LowestQGLJet_mass1', 'LowestQGLJet_mass2',
+    'Lepton_pt[1]',
+    'ptll',
+    'mll',
+    'LowestQGLJet_pt1',
+    'LowestQGLJet_mass1',
     'qgl_j1_lowestqgl',
-    'btagDeepBj1_lowestqgl', 'btagDeepBj2_lowestqgl',
-    'btagCSVV2j1_lowestqgl', 'btagCSVV2j2_lowestqgl',
-    'mjj', 'mjj_qgl', 'ptjj_qgl',
-    'detajj', 'detajj_qgl',
-    'dphijj', 'dphijj_qgl',
-    'drjj', 'drjj_qgl',
-    'dphilljet', 'dphilljet_qgl',
-    'dphilljetjet', 'dphilljetjet_qgl',
+    'mjj',
+    'mjj_qgl',
+    'detajj',
+    'detajj_qgl',
+    'drjj',
+    'Alt(CleanJet_pt,0,0)',
+    'Alt(CleanJet_pt,1,0)',
 ]
 
 aliases['bdt_score'] = {
